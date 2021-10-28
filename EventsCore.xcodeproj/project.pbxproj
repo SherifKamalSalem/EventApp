@@ -10,6 +10,7 @@
 		427627C0272B3EBD00340B7F /* EventsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; };
 		427627C5272B3EBD00340B7F /* EventsCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627C4272B3EBD00340B7F /* EventsCoreTests.swift */; };
 		427627C7272B3EBD00340B7F /* EventsCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 427627B9272B3EBC00340B7F /* EventsCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427627D3272B3EF400340B7F /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627D2272B3EF400340B7F /* EventType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		427627BF272B3EBD00340B7F /* EventsCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		427627C4272B3EBD00340B7F /* EventsCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoreTests.swift; sourceTree = "<group>"; };
 		427627C6272B3EBD00340B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		427627D2272B3EF400340B7F /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				427627B9272B3EBC00340B7F /* EventsCore.h */,
 				427627BA272B3EBC00340B7F /* Info.plist */,
+				427627D2272B3EF400340B7F /* EventType.swift */,
 			);
 			path = EventsCore;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				TargetAttributes = {
 					427627B5272B3EBC00340B7F = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					427627BE272B3EBD00340B7F = {
 						CreatedOnToolsVersion = 12.4;
@@ -194,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427627D3272B3EF400340B7F /* EventType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +345,7 @@
 		427627CB272B3EBD00340B7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -356,6 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bevy.EventsCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +370,7 @@
 		427627CC272B3EBD00340B7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -386,6 +394,7 @@
 		427627CE272B3EBD00340B7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = EventsCoreTests/Info.plist;
@@ -403,6 +412,7 @@
 		427627CF272B3EBD00340B7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = EventsCoreTests/Info.plist;
