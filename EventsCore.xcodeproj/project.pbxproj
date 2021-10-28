@@ -77,8 +77,7 @@
 			children = (
 				427627B9272B3EBC00340B7F /* EventsCore.h */,
 				427627BA272B3EBC00340B7F /* Info.plist */,
-				427627D2272B3EF400340B7F /* EventType.swift */,
-				427627E3272B462000340B7F /* EventTypesLoader.swift */,
+				427627E8272B46F300340B7F /* Event Type Feature */,
 			);
 			path = EventsCore;
 			sourceTree = "<group>";
@@ -90,6 +89,15 @@
 				427627C6272B3EBD00340B7F /* Info.plist */,
 			);
 			path = EventsCoreTests;
+			sourceTree = "<group>";
+		};
+		427627E8272B46F300340B7F /* Event Type Feature */ = {
+			isa = PBXGroup;
+			children = (
+				427627D2272B3EF400340B7F /* EventType.swift */,
+				427627E3272B462000340B7F /* EventTypesLoader.swift */,
+			);
+			path = "Event Type Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
