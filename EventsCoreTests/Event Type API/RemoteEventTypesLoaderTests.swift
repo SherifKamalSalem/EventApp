@@ -10,43 +10,6 @@ import EventsCore
 
 class RemoteEventTypesLoaderTests: XCTestCase {
     
-    func test_init_doesNotRequestDataFromURL() {
-        let (_, client) = makeSUT()
-        
-        XCTAssertTrue(client.requestedURLs.isEmpty)
-    }
-    
-    func test_load_requestDataFromURL() {
-        let url = URL(string: "https://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-
-        sut.load() { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_load_deliversErrorOnClientError() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, toCompleteWith: .failure(RemoteEventTypesLoader.Error.connectivity), when: {
-            let clientError = NSError(domain: "Test", code: 0)
-            client.complete(with: clientError)
-        })
-    }
-    
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        let (sut, client) = makeSUT()
-        
-        let samples = [199, 201, 300, 400, 500]
-        
-        samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: .failure(RemoteEventTypesLoader.Error.invalidData), when: {
-                let json = makeEventTypesJSON([])
-                client.complete(withStatusCode: code, data: json, at: index)
-            })
-        }
-    }
-    
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
@@ -69,21 +32,6 @@ class RemoteEventTypesLoaderTests: XCTestCase {
             client.complete(withStatusCode: 200, data: json)
         })
     }
-    
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteEventTypesLoader? = RemoteEventTypesLoader(url: url, client: client)
-        
-        var capturedResults = [RemoteEventTypesLoader.Result]()
-        sut?.load { capturedResults.append($0) }
-        
-        sut = nil
-        client.complete(withStatusCode: 200, data: makeEventTypesJSON([]))
-        
-        XCTAssertTrue(capturedResults.isEmpty)
-    }
-    
     
     //MARK: - Helpers
     
