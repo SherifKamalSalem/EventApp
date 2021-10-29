@@ -30,7 +30,7 @@ class EventsCoreAPIEndToEndTests: XCTestCase {
     
     private func getFeedResult(file: StaticString = #file, line: UInt = #line) ->  EventTypesLoader.Result? {
         let testServerURL = URL(string: "http://private-7466b-eventtuschanllengeapis.apiary-mock.com/eventtypes")!
-        let client = URLSessionHTTPClient()
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         let loader = RemoteEventTypesLoader(url: testServerURL, client: client)
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
