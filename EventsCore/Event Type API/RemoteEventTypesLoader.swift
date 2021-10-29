@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class RemoteEventTypesLoader {
+public final class RemoteEventTypesLoader: EventTypesLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -15,22 +15,20 @@ public final class RemoteEventTypesLoader {
         case connectivity
         case invalidData
     }
-    
-    public typealias Result = Swift.Result<[EventType], Error>
-    
+        
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (EventTypesLoader.Result) -> Void) {
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             switch result {
             case let .success((data, response)):
                 completion(EventTypeMapper.map(data, response))
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(RemoteEventTypesLoader.Error.connectivity))
             }
         }
     }

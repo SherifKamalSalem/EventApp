@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		427627C0272B3EBD00340B7F /* EventsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; };
-		427627C5272B3EBD00340B7F /* EventsCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627C4272B3EBD00340B7F /* EventsCoreTests.swift */; };
 		427627C7272B3EBD00340B7F /* EventsCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 427627B9272B3EBC00340B7F /* EventsCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427627D3272B3EF400340B7F /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627D2272B3EF400340B7F /* EventType.swift */; };
 		427627E4272B462000340B7F /* EventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627E3272B462000340B7F /* EventTypesLoader.swift */; };
@@ -33,7 +32,6 @@
 		427627B9272B3EBC00340B7F /* EventsCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsCore.h; sourceTree = "<group>"; };
 		427627BA272B3EBC00340B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		427627BF272B3EBD00340B7F /* EventsCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		427627C4272B3EBD00340B7F /* EventsCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoreTests.swift; sourceTree = "<group>"; };
 		427627C6272B3EBD00340B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		427627D2272B3EF400340B7F /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		427627E3272B462000340B7F /* EventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesLoader.swift; sourceTree = "<group>"; };
@@ -94,9 +92,8 @@
 		427627C3272B3EBD00340B7F /* EventsCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				427627C4272B3EBD00340B7F /* EventsCoreTests.swift */,
 				427627C6272B3EBD00340B7F /* Info.plist */,
-				427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */,
+				42762800272C37FA00340B7F /* Event Type API */,
 			);
 			path = EventsCoreTests;
 			sourceTree = "<group>";
@@ -116,6 +113,14 @@
 				427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */,
 				427627F6272BF2E700340B7F /* HTTPClient.swift */,
 				427627FA272C335200340B7F /* EventTypeMapper.swift */,
+			);
+			path = "Event Type API";
+			sourceTree = "<group>";
+		};
+		42762800272C37FA00340B7F /* Event Type API */ = {
+			isa = PBXGroup;
+			children = (
+				427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */,
 			);
 			path = "Event Type API";
 			sourceTree = "<group>";
@@ -241,7 +246,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427627C5272B3EBD00340B7F /* EventsCoreTests.swift in Sources */,
 				427627EC272B490600340B7F /* RemoteEventTypesLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
