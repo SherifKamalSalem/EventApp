@@ -15,6 +15,7 @@
 		427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */; };
 		427627F7272BF2E700340B7F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F6272BF2E700340B7F /* HTTPClient.swift */; };
 		427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627FA272C335200340B7F /* EventTypeMapper.swift */; };
+		42762806272C449300340B7F /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42762805272C449300340B7F /* URLSessionHTTPClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoader.swift; sourceTree = "<group>"; };
 		427627F6272BF2E700340B7F /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		427627FA272C335200340B7F /* EventTypeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypeMapper.swift; sourceTree = "<group>"; };
+		42762805272C449300340B7F /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */,
+				42762805272C449300340B7F /* URLSessionHTTPClientTests.swift */,
 			);
 			path = "Event Type API";
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				427627EC272B490600340B7F /* RemoteEventTypesLoaderTests.swift in Sources */,
+				42762806272C449300340B7F /* URLSessionHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
