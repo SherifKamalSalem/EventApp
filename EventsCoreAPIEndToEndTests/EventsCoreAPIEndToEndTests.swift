@@ -28,7 +28,7 @@ class EventsCoreAPIEndToEndTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func getFeedResult(file: StaticString = #file, line: UInt = #line) ->  EventTypesLoader.Result? {
+    private func getFeedResult(file: StaticString = #file, line: UInt = #line) ->  EventLoader.Result? {
         let testServerURL = URL(string: "http://private-7466b-eventtuschanllengeapis.apiary-mock.com/eventtypes")!
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         let loader = RemoteEventTypesLoader(url: testServerURL, client: client)
@@ -37,7 +37,7 @@ class EventsCoreAPIEndToEndTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load completion")
         
-        var receivedResult: EventTypesLoader.Result?
+        var receivedResult: EventLoader.Result?
         loader.load { result in
             receivedResult = result
             exp.fulfill()
