@@ -13,6 +13,7 @@
 		427627D3272B3EF400340B7F /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627D2272B3EF400340B7F /* EventType.swift */; };
 		427627E4272B462000340B7F /* EventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627E3272B462000340B7F /* EventTypesLoader.swift */; };
 		427627EC272B490600340B7F /* RemoteEventTypesLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */; };
+		427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		427627D2272B3EF400340B7F /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		427627E3272B462000340B7F /* EventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesLoader.swift; sourceTree = "<group>"; };
 		427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoaderTests.swift; sourceTree = "<group>"; };
+		427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		427627B8272B3EBC00340B7F /* EventsCore */ = {
 			isa = PBXGroup;
 			children = (
+				427627EF272BE9D300340B7F /* Event Type API */,
 				427627B9272B3EBC00340B7F /* EventsCore.h */,
 				427627BA272B3EBC00340B7F /* Info.plist */,
 				427627E8272B46F300340B7F /* Event Type Feature */,
@@ -101,6 +104,14 @@
 				427627E3272B462000340B7F /* EventTypesLoader.swift */,
 			);
 			path = "Event Type Feature";
+			sourceTree = "<group>";
+		};
+		427627EF272BE9D300340B7F /* Event Type API */ = {
+			isa = PBXGroup;
+			children = (
+				427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */,
+			);
+			path = "Event Type API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */,
 				427627D3272B3EF400340B7F /* EventType.swift in Sources */,
 				427627E4272B462000340B7F /* EventTypesLoader.swift in Sources */,
 			);

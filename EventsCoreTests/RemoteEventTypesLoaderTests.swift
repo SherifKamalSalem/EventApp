@@ -6,46 +6,32 @@
 //
 
 import XCTest
-
-class RemoteEventTypesLoader {
-    private let client: HTTPClient
-    private let url: URL
-    
-    init(client: HTTPClient, url: URL) {
-        self.client = client
-        self.url = url
-    }
-    
-    func load() {
-        client.get(from: url)
-    }
-}
-
-protocol HTTPClient {
-    func get(from url: URL)
-}
+import EventsCore
 
 class RemoteEventTypesLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
-        let url = URL(string: "https://a-url.com")!
-        let client = HTTPClientSpy()
-        _ = RemoteEventTypesLoader(client: client, url: url)
+        let (_, client) = makeSUT()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestDataFromURL() {
-        let url = URL(string: "https://a-url.com")!
-        let client = HTTPClientSpy()
-        let sut = RemoteEventTypesLoader(client: client, url: url)
-        
+        let url = URL(string: "https://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+
         sut.load()
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
     //MARK: - Helpers
+    
+    private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteEventTypesLoader, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = RemoteEventTypesLoader(url: url, client: client)
+        return (sut, client)
+    }
     
     class HTTPClientSpy: HTTPClient {
         var requestedURLs = [URL]()
