@@ -118,12 +118,6 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
-        }
-    }
-    
     private func makeEventType(id: String, name: String) ->  (model: EventType, json: [String: Any]) {
         let item = EventType(id: id, name:name)
         
