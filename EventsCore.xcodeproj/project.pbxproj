@@ -165,9 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				427627C6272B3EBD00340B7F /* Info.plist */,
+				42510597272C568C00CC97DC /* Helpers */,
 				428D108E272CA3800009A375 /* Shared API */,
 				428D108F272CA3890009A375 /* Shared API Infra */,
-				42510597272C568C00CC97DC /* Helpers */,
 				42762800272C37FA00340B7F /* Event Type API */,
 			);
 			path = EventsCoreTests;
@@ -195,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */,
-				42762805272C449300340B7F /* URLSessionHTTPClientTests.swift */,
 			);
 			path = "Event Type API";
 			sourceTree = "<group>";
@@ -211,6 +210,7 @@
 		428D108F272CA3890009A375 /* Shared API Infra */ = {
 			isa = PBXGroup;
 			children = (
+				42762805272C449300340B7F /* URLSessionHTTPClientTests.swift */,
 			);
 			path = "Shared API Infra";
 			sourceTree = "<group>";
