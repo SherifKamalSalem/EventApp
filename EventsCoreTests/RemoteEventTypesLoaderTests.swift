@@ -55,6 +55,20 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         })
     }
     
+    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+        
+        let eventType1 = makeEventType(id: "id", name: "name")
+        let eventType2 = makeEventType(id: "another id", name: "another name")
+        
+        let eventTypes = [eventType1.model, eventType2.model]
+        
+        expect(sut, toCompleteWith: .success(eventTypes), when: {
+            let json = makeEventTypesJSON([eventType1.json, eventType2.json])
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
+    
     //MARK: - Helpers
     
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteEventTypesLoader, client: HTTPClientSpy) {
@@ -70,6 +84,22 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         action()
         
         XCTAssertEqual(capturedResults, [result], file: file, line: line)
+    }
+    
+    private func makeEventType(id: String, name: String) ->  (model: EventType, json: [String: Any]) {
+        let item = EventType(id: id, name:name)
+        
+        let json = [
+            "id": id,
+            "name": name
+        ].compactMapValues { $0 }
+        
+        return (item, json)
+    }
+    
+    private func makeEventTypesJSON(_ types: [[String: Any]]) -> Data {
+        let json = types
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     class HTTPClientSpy: HTTPClient {

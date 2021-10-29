@@ -26,11 +26,24 @@ public final class RemoteEventTypesLoader {
     public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case .success:
-                completion(.failure(.invalidData))
+            case let .success((data, response)):
+                if response.statusCode == 200, let eventTypes = try? JSONDecoder().decode([EventTypeDTO].self, from: data) {
+                    completion(.success(eventTypes.map { $0.type }))
+                } else {
+                    completion(.failure(.invalidData))
+                }
             case .failure:
                 completion(.failure(.connectivity))
             }
         }
+    }
+}
+
+private struct EventTypeDTO: Decodable {
+    let id: String
+    let name: String
+    
+    var type: EventType {
+        return EventType(id: id, name: name)
     }
 }
