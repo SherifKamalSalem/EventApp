@@ -14,6 +14,7 @@
 		427627E4272B462000340B7F /* EventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627E3272B462000340B7F /* EventTypesLoader.swift */; };
 		427627EC272B490600340B7F /* RemoteEventTypesLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */; };
 		427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */; };
+		427627F7272BF2E700340B7F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F6272BF2E700340B7F /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		427627E3272B462000340B7F /* EventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesLoader.swift; sourceTree = "<group>"; };
 		427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoaderTests.swift; sourceTree = "<group>"; };
 		427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoader.swift; sourceTree = "<group>"; };
+		427627F6272BF2E700340B7F /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */,
+				427627F6272BF2E700340B7F /* HTTPClient.swift */,
 			);
 			path = "Event Type API";
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */,
 				427627D3272B3EF400340B7F /* EventType.swift in Sources */,
+				427627F7272BF2E700340B7F /* HTTPClient.swift in Sources */,
 				427627E4272B462000340B7F /* EventTypesLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
