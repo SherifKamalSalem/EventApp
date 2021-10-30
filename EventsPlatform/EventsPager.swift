@@ -20,7 +20,7 @@ protocol EventsPagerDelegate: AnyObject {
     func didMoveToControllerAtIndex(index: Int)
 }
 
-class EventsPager {
+class EventsPager: NSObject {
     fileprivate weak var controller: UIViewController?
     fileprivate var view: UIView
     
@@ -89,10 +89,8 @@ class EventsPager {
         guard let selectedViewController = getViewController(forPageAt: index) else {
             fatalError("There is no view controller for tab at index: \(index)")
         }
-        
         let previousIndex = currentPageIndex
         let direction:UIPageViewController.NavigationDirection = (index > previousIndex ) ? .forward : .reverse
-        
         
         delegate?.willMoveToControllerAtIndex(index: index)
         pageController?.setViewControllers([selectedViewController], direction: direction, animated: true, completion: { (isCompleted) in
@@ -104,5 +102,69 @@ class EventsPager {
                 })
             }
         })
+    }
+    
+    
+    private func setupPageViewController() {
+        let pageController = UIPageViewController(
+            transitionStyle: options.eventsPagerTransitionStyle,
+            navigationOrientation: .horizontal, options: nil)
+        
+        self.controller?.addChild(pageController)
+        setupForAutolayout(view: pageController.view, inView: view)
+        pageController.didMove(toParent: controller)
+        self.pageController = pageController
+        
+        self.pageController?.dataSource = self
+        self.pageController?.delegate = self
+        
+        self.pageController?.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        self.pageController?.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        self.pageController?.view.topAnchor.constraint(equalTo: tabBarScrollView.bottomAnchor).isActive = true
+        self.pageController?.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        guard let dataSource = dataSource else {
+            fatalError("ViewPagerDataSource not set")
+        }
+        
+        self.currentPageIndex = dataSource.startEventsPagerAtIndex()
+        if let firstPageController = getViewController(forPageAt: self.currentPageIndex) {
+            self.pageController?.setViewControllers([firstPageController], direction: .forward, animated: false, completion: nil)
+        }
+    }
+}
+
+extension EventsPager: UIPageViewControllerDataSource {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let previousController = getViewController(forPageAt: viewController.view.tag - 1)
+        return previousController
+    }
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let nextController = getViewController(forPageAt: viewController.view.tag + 1)
+        return nextController
+    }
+}
+
+
+extension EventsPager: UIPageViewControllerDelegate {
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard let pageIndex = pageViewController.viewControllers?.first?.view.tag else { return }
+        if completed && finished {
+            delegate?.didMoveToControllerAtIndex(index: pageIndex)
+        }
+    }
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        let pageIndex = pendingViewControllers.first?.view.tag
+        delegate?.willMoveToControllerAtIndex(index: pageIndex!)
+    }
+    
+    
+    internal func setupForAutolayout(view: UIView?, inView parentView: UIView) {
+        guard let v = view else { return }
+        v.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(v)
     }
 }

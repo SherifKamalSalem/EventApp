@@ -12,6 +12,8 @@ public class EventsPagerConfig {
     public var tabViewBackgroundDefaultColor: UIColor = Color.tabViewBackground
     public var tabViewHeight:CGFloat = 60
 
+    public var eventsPagerTransitionStyle: UIPageViewController.TransitionStyle = .scroll
+
     public init() {}
     
     fileprivate struct Color {
