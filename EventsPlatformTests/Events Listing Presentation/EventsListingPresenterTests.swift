@@ -6,28 +6,8 @@
 //
 
 import XCTest
+import EventsPlatform
 import EventsCore
-
-struct EventsLoadingViewModelPresentable {
-    let isLoading: Bool
-}
-
-protocol EventsLoadingView {
-    func display(_ viewModel: EventsLoadingViewModelPresentable)
-}
-
-final class EventsListingPresenter {
-    private let loadingView: EventsLoadingView
-    
-    init(loadingView: EventsLoadingView) {
-        self.loadingView = loadingView
-    }
-    
-    func didStartLoadingEvents() {
-        loadingView.display(EventsLoadingViewModelPresentable(isLoading: true))
-    }
-}
-
 
 class EventsPlatformTests: XCTestCase {
     func test_didStartLoadingEvents_startsLoading() {
@@ -40,26 +20,50 @@ class EventsPlatformTests: XCTestCase {
         ])
     }
     
+    func test_didFinishLoadingEvents_displaysEventsAndStopsLoading() {
+        let (sut, view) = makeSUT()
+        let events = makeEvents()
+        
+        sut.didFinishLoadingEvents(with: events)
+        
+        XCTAssertEqual(view.messages, [
+            .display(events: events),
+            .display(isLoading: false),
+        ])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: EventsListingPresenter, view: ViewSpy) {
         let view = ViewSpy()
-        let sut = EventsListingPresenter(loadingView: view)
+        let sut = EventsListingPresenter(loadingView: view, eventsView: view)
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
     }
 
+    func makeEvents() -> [Event] {
+        return [
+            Event(id: "any", name: "any", longitude: "any", latitude: "any", startDate: "any", endDate: "any", description: "any", cover: "any"),
+            Event(id: "any", name: "any", longitude: "any", latitude: "any", startDate: "any", endDate: "any", description: "any", cover: "any")
+        ]
+    }
     
-    private class ViewSpy: EventsLoadingView {
+    private class ViewSpy: EventsLoadingView, EventsView {
+        
         enum Message: Hashable {
             case display(isLoading: Bool)
+            case display(events: [Event])
         }
         
         private(set) var messages = Set<Message>()
         
+        func display(_ viewModel: EventsViewModelPresentable) {
+            messages.insert(.display(events: viewModel.events))
+        }
+        
         func display(_ viewModel: EventsLoadingViewModelPresentable) {
-            messages.insert(.display(isLoading: true))
+            messages.insert(.display(isLoading: viewModel.isLoading))
         }
     }
 }

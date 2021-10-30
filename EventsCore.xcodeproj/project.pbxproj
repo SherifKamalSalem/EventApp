@@ -36,6 +36,9 @@
 		42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */; };
 		42E33BEC272D97C70003843B /* EventsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; platformFilter = ios; };
 		42E33BED272D97C70003843B /* EventsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
+		42E33BFA272D9E480003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
+		42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C04272DA9E00003843B /* EventsListingPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,7 @@
 		428D110B272D6A560009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
+		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +237,7 @@
 				428D10C6272CB2C00009A375 /* Event Listing API */,
 				427627E8272B46F300340B7F /* Event Type Feature */,
 				428D10BC272CB1F00009A375 /* Event Listing Feature */,
+				42E33C03272DA9AD0003843B /* Events Listing Presentation */,
 			);
 			path = EventsCore;
 			sourceTree = "<group>";
@@ -357,6 +362,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42E33C03272DA9AD0003843B /* Events Listing Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				42E33C04272DA9E00003843B /* EventsListingPresenter.swift */,
+			);
+			path = "Events Listing Presentation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,6 +620,8 @@
 			files = (
 				42E33BBC272D7E790003843B /* EventsPager.swift in Sources */,
 				42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */,
+				42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */,
+				42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +631,7 @@
 			files = (
 				428D110A272D6A560009A375 /* EventsListingPresenterTests.swift in Sources */,
 				42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				42E33BFA272D9E480003843B /* SharedTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
