@@ -7,12 +7,27 @@
 
 import UIKit
 
-public class EventsPager {
+protocol EventsPagerDataSource: AnyObject {
+    func numberOfPages() -> Int
+    func viewControllerAtPosition(position: Int) -> UIViewController
+    func tabsForPages() -> [String]
+    func startEventsPagerAtIndex() -> Int
+}
+
+
+protocol EventsPagerDelegate: AnyObject {
+    func willMoveToControllerAtIndex(index: Int)
+    func didMoveToControllerAtIndex(index: Int)
+}
+
+class EventsPager {
     fileprivate weak var controller: UIViewController?
     fileprivate var view: UIView
     
     fileprivate var tabBarScrollView = UIScrollView()
     fileprivate var pageController: UIPageViewController?
+    fileprivate weak var dataSource: EventsPagerDataSource?
+    fileprivate weak var delegate: EventsPagerDelegate?
     
     fileprivate var options = EventsPagerConfig()
     fileprivate var currentPageIndex = 0
@@ -51,6 +66,43 @@ public class EventsPager {
     
     // MARK:- Actions
     @objc func tabBarScrollViewTapped(_ recognizer: UITapGestureRecognizer) {
+        let tapLocation = recognizer.location(in: self.tabBarScrollView)
+        let tabViewTapped = tabBarScrollView.hitTest(tapLocation, with: nil)
         
+        if let tabIndex = tabViewTapped?.tag, tabIndex != currentPageIndex {
+            presentViewController(at: tabIndex)
+        }
+    }
+    
+    private func getViewController(forPageAt index: Int) -> UIViewController? {
+        guard let viewPagerSource = dataSource, index >= 0 && index < viewPagerSource.numberOfPages() else {
+            return nil
+        }
+        
+        let pageItemViewController = viewPagerSource.viewControllerAtPosition(position: index)
+        pageItemViewController.view.tag = index
+        return pageItemViewController
+    }
+    
+    
+    private func presentViewController(at index: Int) {
+        guard let selectedViewController = getViewController(forPageAt: index) else {
+            fatalError("There is no view controller for tab at index: \(index)")
+        }
+        
+        let previousIndex = currentPageIndex
+        let direction:UIPageViewController.NavigationDirection = (index > previousIndex ) ? .forward : .reverse
+        
+        
+        delegate?.willMoveToControllerAtIndex(index: index)
+        pageController?.setViewControllers([selectedViewController], direction: direction, animated: true, completion: { (isCompleted) in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.pageController?.setViewControllers([selectedViewController], direction: direction, animated: false, completion: { (isComplete) in
+                    guard isComplete else { return }
+                    self.delegate?.didMoveToControllerAtIndex(index: index)
+                })
+            }
+        })
     }
 }
