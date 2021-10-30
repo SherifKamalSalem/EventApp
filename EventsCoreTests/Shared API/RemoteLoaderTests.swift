@@ -1,14 +1,14 @@
 //
-//  RemoteEventTypesLoaderTests.swift
+//  RemoteLoaderTests.swift
 //  EventsCoreTests
 //
-//  Created by Sherif Kamal on 10/28/21.
+//  Created by Sherif Kamal on 10/29/21.
 //
 
 import XCTest
 import EventsCore
 
-class RemoteEventTypesLoaderTests: XCTestCase {
+class RemoteLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
@@ -19,7 +19,7 @@ class RemoteEventTypesLoaderTests: XCTestCase {
     func test_load_requestDataFromURL() {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
-
+        
         sut.load() { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
@@ -28,58 +28,43 @@ class RemoteEventTypesLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWith: .failure(RemoteEventTypesLoader.Error.connectivity), when: {
+        expect(sut, toCompleteWith: failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
         })
     }
     
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        let (sut, client) = makeSUT()
+    func test_load_deliversErrorOnMapperError() {
+        let (sut, client) = makeSUT(mapper: { _, _ in
+            throw anyNSError()
+        })
         
-        let samples = [199, 201, 300, 400, 500]
-        
-        samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: .failure(RemoteEventTypesLoader.Error.invalidData), when: {
-                let json = makeEventTypesJSON([])
-                client.complete(withStatusCode: code, data: json, at: index)
-            })
-        }
-    }
-    
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, toCompleteWith: .failure(RemoteEventTypesLoader.Error.invalidData), when: {
-            let invalidJSON = Data("invalid json".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
+        expect(sut, toCompleteWith: failure(.invalidData), when: {
+            client.complete(withStatusCode: 200, data: anyData())
         })
     }
     
-    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
-        let (sut, client) = makeSUT()
+    func test_load_deliversMappedResource() {
+        let resource = "a resource"
+        let (sut, client) = makeSUT(mapper: { data, _ in
+            String(data: data, encoding: .utf8)!
+        })
         
-        let eventType1 = makeEventType(id: "id", name: "name")
-        let eventType2 = makeEventType(id: "another id", name: "another name")
-        
-        let eventTypes = [eventType1.model, eventType2.model]
-        
-        expect(sut, toCompleteWith: .success(eventTypes), when: {
-            let json = makeEventTypesJSON([eventType1.json, eventType2.json])
-            client.complete(withStatusCode: 200, data: json)
+        expect(sut, toCompleteWith: .success(resource), when: {
+            client.complete(withStatusCode: 200, data: Data(resource.utf8))
         })
     }
     
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let url = URL(string: "http://any-url.com")!
         let client = HTTPClientSpy()
-        var sut: RemoteEventTypesLoader? = RemoteEventTypesLoader(url: url, client: client)
+        var sut: RemoteLoader<String>? = RemoteLoader<String>(url: url, client: client, mapper: { _, _ in "any" })
         
-        var capturedResults = [RemoteEventTypesLoader.Result]()
+        var capturedResults = [RemoteLoader<String>.Result]()
         sut?.load { capturedResults.append($0) }
         
         sut = nil
-        client.complete(withStatusCode: 200, data: makeEventTypesJSON([]))
+        client.complete(withStatusCode: 200, data: makeJSON([]))
         
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -87,15 +72,24 @@ class RemoteEventTypesLoaderTests: XCTestCase {
     
     //MARK: - Helpers
     
-    private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteEventTypesLoader, client: HTTPClientSpy) {
+    private func makeSUT(
+        url: URL = URL(string: "https://a-url.com")!,
+        mapper: @escaping RemoteLoader<String>.Mapper = { _, _ in "any" },
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: RemoteLoader<String>, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteEventTypesLoader(url: url, client: client)
+        let sut = RemoteLoader<String>(url: url, client: client, mapper: mapper)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
     }
     
-    private func expect(_ sut: RemoteEventTypesLoader, toCompleteWith expectedResult: RemoteEventTypesLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func failure(_ error: RemoteLoader<String>.Error) -> RemoteLoader<String>.Result {
+        return .failure(error)
+    }
+    
+    private func expect(_ sut: RemoteLoader<String>, toCompleteWith expectedResult: RemoteLoader<String>.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         
         sut.load { receivedResult in
@@ -103,7 +97,7 @@ class RemoteEventTypesLoaderTests: XCTestCase {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
                 
-            case let (.failure(receivedError as RemoteEventTypesLoader.Error), .failure(expectedError as RemoteEventTypesLoader.Error)):
+            case let (.failure(receivedError as RemoteLoader<String>.Error), .failure(expectedError as RemoteLoader<String>.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
                 
             default:
@@ -118,19 +112,7 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func makeEventType(id: String, name: String) ->  (model: EventType, json: [String: Any]) {
-        let item = EventType(id: id, name:name)
-        
-        let json = [
-            "id": id,
-            "name": name
-        ].compactMapValues { $0 }
-        
-        return (item, json)
-    }
-    
-    private func makeEventTypesJSON(_ types: [[String: Any]]) -> Data {
-        let json = types
+    private func makeJSON(_ json: [[String: Any]]) -> Data {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
@@ -139,7 +121,7 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }
-                
+        
         func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
             messages.append((url, completion))
         }
@@ -159,3 +141,5 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         }
     }
 }
+
+
