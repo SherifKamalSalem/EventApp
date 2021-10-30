@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,9 +30,12 @@
 		428D10D6272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10D5272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift */; };
 		428D10E1272D26110009A375 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10E0272D26110009A375 /* HTTPClientSpy.swift */; };
 		428D1105272D6A560009A375 /* EventsPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 428D10FC272D6A550009A375 /* EventsPlatform.framework */; };
-		428D110A272D6A560009A375 /* EventsPlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D1109272D6A560009A375 /* EventsPlatformTests.swift */; };
+		428D110A272D6A560009A375 /* EventsListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */; };
 		42E33BBC272D7E790003843B /* EventsPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BBB272D7E790003843B /* EventsPager.swift */; };
 		42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BC2272D81780003843B /* EventsPagerConfig.swift */; };
+		42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */; };
+		42E33BEC272D97C70003843B /* EventsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; platformFilter = ios; };
+		42E33BED272D97C70003843B /* EventsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +60,28 @@
 			remoteGlobalIDString = 428D10FB272D6A550009A375;
 			remoteInfo = EventsPlatform;
 		};
+		42E33BEE272D97C70003843B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 427627AD272B3EBC00340B7F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 427627B5272B3EBC00340B7F;
+			remoteInfo = EventsCore;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		42E33BF0272D97C80003843B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				42E33BED272D97C70003843B /* EventsCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
@@ -88,7 +112,7 @@
 		428D10FC272D6A550009A375 /* EventsPlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsPlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		428D10FF272D6A550009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		428D1104272D6A560009A375 /* EventsPlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsPlatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		428D1109272D6A560009A375 /* EventsPlatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPlatformTests.swift; sourceTree = "<group>"; };
+		428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenterTests.swift; sourceTree = "<group>"; };
 		428D110B272D6A560009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
@@ -122,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E33BEC272D97C70003843B /* EventsCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +206,7 @@
 				428D10FD272D6A550009A375 /* EventsPlatform */,
 				428D1108272D6A560009A375 /* EventsPlatformTests */,
 				427627B7272B3EBC00340B7F /* Products */,
+				42E33BEB272D97C70003843B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -303,7 +329,7 @@
 		428D1108272D6A560009A375 /* EventsPlatformTests */ = {
 			isa = PBXGroup;
 			children = (
-				428D1109272D6A560009A375 /* EventsPlatformTests.swift */,
+				42E33BDA272D91E70003843B /* Events Listing Presentation */,
 				428D110B272D6A560009A375 /* Info.plist */,
 			);
 			path = EventsPlatformTests;
@@ -316,6 +342,21 @@
 				42E33BC2272D81780003843B /* EventsPagerConfig.swift */,
 			);
 			path = "Events Pager";
+			sourceTree = "<group>";
+		};
+		42E33BDA272D91E70003843B /* Events Listing Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */,
+			);
+			path = "Events Listing Presentation";
+			sourceTree = "<group>";
+		};
+		42E33BEB272D97C70003843B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,10 +442,12 @@
 				428D10F8272D6A550009A375 /* Sources */,
 				428D10F9272D6A550009A375 /* Frameworks */,
 				428D10FA272D6A550009A375 /* Resources */,
+				42E33BF0272D97C80003843B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				42E33BEF272D97C70003843B /* PBXTargetDependency */,
 			);
 			name = EventsPlatform;
 			productName = EventsPlatform;
@@ -571,7 +614,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				428D110A272D6A560009A375 /* EventsPlatformTests.swift in Sources */,
+				428D110A272D6A560009A375 /* EventsListingPresenterTests.swift in Sources */,
+				42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +636,12 @@
 			isa = PBXTargetDependency;
 			target = 428D10FB272D6A550009A375 /* EventsPlatform */;
 			targetProxy = 428D1106272D6A560009A375 /* PBXContainerItemProxy */;
+		};
+		42E33BEF272D97C70003843B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 427627B5272B3EBC00340B7F /* EventsCore */;
+			targetProxy = 42E33BEE272D97C70003843B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
