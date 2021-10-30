@@ -38,9 +38,10 @@
 		42E33BED272D97C70003843B /* EventsCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
 		42E33BFA272D9E480003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
-		42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C04272DA9E00003843B /* EventsListingPresenter.swift */; };
 		42E33C1B272DB49A0003843B /* EventsListing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E33C1A272DB49A0003843B /* EventsListing.storyboard */; };
 		42E33C21272DC1F20003843B /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C20272DC1F20003843B /* EventCell.swift */; };
+		42E33C26272DC7580003843B /* EventsListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C04272DA9E00003843B /* EventsListingPresenter.swift */; };
+		42E33C31272DC8F30003843B /* EventCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C30272DC8F30003843B /* EventCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
 		42E33C1A272DB49A0003843B /* EventsListing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventsListing.storyboard; sourceTree = "<group>"; };
 		42E33C20272DC1F20003843B /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		42E33C30272DC8F30003843B /* EventCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 		42E33C0E272DB3B50003843B /* Events Listing UI */ = {
 			isa = PBXGroup;
 			children = (
+				42E33C2F272DC8DA0003843B /* Controllers */,
 				42E33C0F272DB3D50003843B /* Views */,
 			);
 			path = "Events Listing UI";
@@ -392,6 +395,14 @@
 				42E33C20272DC1F20003843B /* EventCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		42E33C2F272DC8DA0003843B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				42E33C30272DC8F30003843B /* EventCellController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -614,6 +625,7 @@
 				427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */,
 				427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */,
 				427627D3272B3EF400340B7F /* EventType.swift in Sources */,
+				42E33C26272DC7580003843B /* EventsListingPresenter.swift in Sources */,
 				427627F7272BF2E700340B7F /* HTTPClient.swift in Sources */,
 				425105CD272C961300CC97DC /* RemoteLoader.swift in Sources */,
 				428D10C8272CB2DE0009A375 /* EventListingMapper.swift in Sources */,
@@ -644,7 +656,7 @@
 				42E33BBC272D7E790003843B /* EventsPager.swift in Sources */,
 				42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */,
 				42E33C21272DC1F20003843B /* EventCell.swift in Sources */,
-				42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */,
+				42E33C31272DC8F30003843B /* EventCellController.swift in Sources */,
 				42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

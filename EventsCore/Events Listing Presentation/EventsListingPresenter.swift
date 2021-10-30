@@ -6,7 +6,30 @@
 //
 
 import Foundation
-import EventsCore
+
+public struct EventViewModelPresentable {
+    private let event: Event
+    
+    public var name: String {
+        return event.name
+    }
+    
+    public var description: String {
+        return event.description
+    }
+    
+    public var startDate: String {
+        return event.startDate
+    }
+    
+    public var cover: String {
+        return event.cover
+    }
+}
+
+public protocol EventView {
+    func display(_ viewModel: EventViewModelPresentable)
+}
 
 public struct EventsViewModelPresentable {
     public let events: [Event]
