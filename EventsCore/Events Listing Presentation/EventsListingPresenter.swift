@@ -10,6 +10,10 @@ import Foundation
 public struct EventViewModelPresentable {
     private let event: Event
     
+    public init(event: Event) {
+        self.event = event
+    }
+    
     public var name: String {
         return event.name
     }

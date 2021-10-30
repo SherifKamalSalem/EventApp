@@ -8,11 +8,22 @@
 import UIKit
 
 public final class EventViewController: UITableViewController {
-    
+    private var refreshController: EventsRefreshViewController?
     var tableModel = [EventCellController]() {
         didSet { tableView.reloadData() }
     }
 
+    convenience init(refreshController: EventsRefreshViewController) {
+        self.init()
+        self.refreshController = refreshController
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        refreshControl = refreshController?.view
+        refreshController?.refresh()
+    }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModel.count

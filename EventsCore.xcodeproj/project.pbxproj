@@ -45,6 +45,7 @@
 		42E33C3F272DDD170003843B /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C3E272DDD170003843B /* EventViewController.swift */; };
 		42F528FC272E0B5100F960A7 /* EventsRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F528FB272E0B5100F960A7 /* EventsRefreshViewController.swift */; };
 		42F52902272E0CAA00F960A7 /* EventListingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F52901272E0CAA00F960A7 /* EventListingLoader.swift */; };
+		42F52909272E0E5D00F960A7 /* EventsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F52908272E0E5D00F960A7 /* EventsUIComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		42E33C3E272DDD170003843B /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		42F528FB272E0B5100F960A7 /* EventsRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRefreshViewController.swift; sourceTree = "<group>"; };
 		42F52901272E0CAA00F960A7 /* EventListingLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListingLoader.swift; sourceTree = "<group>"; };
+		42F52908272E0E5D00F960A7 /* EventsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsUIComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +391,7 @@
 		42E33C0E272DB3B50003843B /* Events Listing UI */ = {
 			isa = PBXGroup;
 			children = (
+				42F52907272E0E4B00F960A7 /* Composers */,
 				42E33C2F272DC8DA0003843B /* Controllers */,
 				42E33C0F272DB3D50003843B /* Views */,
 			);
@@ -412,6 +415,14 @@
 				42F528FB272E0B5100F960A7 /* EventsRefreshViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		42F52907272E0E4B00F960A7 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				42F52908272E0E5D00F960A7 /* EventsUIComposer.swift */,
+			);
+			path = Composers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -667,6 +678,7 @@
 				42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */,
 				42E33C21272DC1F20003843B /* EventCell.swift in Sources */,
 				42E33C31272DC8F30003843B /* EventCellController.swift in Sources */,
+				42F52909272E0E5D00F960A7 /* EventsUIComposer.swift in Sources */,
 				42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */,
 				42E33C3F272DDD170003843B /* EventViewController.swift in Sources */,
 				42F528FC272E0B5100F960A7 /* EventsRefreshViewController.swift in Sources */,
