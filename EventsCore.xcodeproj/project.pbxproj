@@ -26,6 +26,7 @@
 		428D1091272CA3C30009A375 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D1090272CA3C30009A375 /* RemoteLoaderTests.swift */; };
 		428D10BE272CB2170009A375 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10BD272CB2170009A375 /* Event.swift */; };
 		428D10C8272CB2DE0009A375 /* EventListingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10C7272CB2DE0009A375 /* EventListingMapper.swift */; };
+		428D10CD272D1B800009A375 /* RemoteEventListingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10CC272D1B800009A375 /* RemoteEventListingLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		428D1090272CA3C30009A375 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
 		428D10BD272CB2170009A375 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		428D10C7272CB2DE0009A375 /* EventListingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListingMapper.swift; sourceTree = "<group>"; };
+		428D10CC272D1B800009A375 /* RemoteEventListingLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventListingLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 		428D10C6272CB2C00009A375 /* Event Listing API */ = {
 			isa = PBXGroup;
 			children = (
+				428D10CC272D1B800009A375 /* RemoteEventListingLoader.swift */,
 				428D10C7272CB2DE0009A375 /* EventListingMapper.swift */,
 			);
 			path = "Event Listing API";
@@ -392,6 +395,7 @@
 				425105CD272C961300CC97DC /* RemoteLoader.swift in Sources */,
 				428D10C8272CB2DE0009A375 /* EventListingMapper.swift in Sources */,
 				427627E4272B462000340B7F /* EventLoader.swift in Sources */,
+				428D10CD272D1B800009A375 /* RemoteEventListingLoader.swift in Sources */,
 				425105A3272C72A600CC97DC /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
