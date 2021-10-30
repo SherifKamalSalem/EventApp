@@ -26,3 +26,7 @@ func anyHTTPURLResponse() -> HTTPURLResponse {
 func nonHTTPURLResponse() -> URLResponse {
     return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
 }
+
+func makeJSONObjects(_ objects: [[String: Any]]) -> Data {
+    return try! JSONSerialization.data(withJSONObject: objects)
+}

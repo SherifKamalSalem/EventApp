@@ -9,23 +9,23 @@ import Foundation
 
 public struct Event: Equatable {
     let id: String
+    let name: String
     let longitude, latitude, endDate, startDate: String
     let welcomeDescription: String
     let cover: String
-    let name: String
     
-    init(id: String, longitude: String,
-         latitude: String, endDate: String,
-         startDate: String, welcomeDescription: String,
-         cover: String, name: String
+    public init(id: String, name: String,
+                longitude: String,latitude: String,
+                startDate: String, endDate: String,
+                welcomeDescription: String, cover: String
     ) {
         self.id = id
+        self.name = name
         self.longitude = longitude
         self.latitude = latitude
-        self.endDate = endDate
         self.startDate = startDate
+        self.endDate = endDate
         self.welcomeDescription = welcomeDescription
         self.cover = cover
-        self.name = name
     }
 }

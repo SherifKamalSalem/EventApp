@@ -33,7 +33,7 @@ public class EventListingMapper {
         let name: String
         
         var event: Event {
-            return Event(id: id, longitude: longitude, latitude: latitude, endDate: endDate, startDate: startDate, welcomeDescription: welcomeDescription, cover: cover, name: name)
+            return Event(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, endDate: endDate, welcomeDescription: welcomeDescription, cover: cover)
         }
     }
 }

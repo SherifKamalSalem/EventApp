@@ -1,5 +1,5 @@
 //
-//  RemoteEventTypesLoaderTests.swift
+//  LoadEventTypesFromRemoteUseCaseTests.swift
 //  EventsCoreTests
 //
 //  Created by Sherif Kamal on 10/28/21.
@@ -8,7 +8,7 @@
 import XCTest
 import EventsCore
 
-class RemoteEventTypesLoaderTests: XCTestCase {
+class LoadEventTypesFromRemoteUseCaseTests: XCTestCase {
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
@@ -28,7 +28,7 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         let eventTypes = [eventType1.model, eventType2.model]
         
         expect(sut, toCompleteWith: .success(eventTypes), when: {
-            let json = makeEventTypesJSON([eventType1.json, eventType2.json])
+            let json = makeJSONObjects([eventType1.json, eventType2.json])
             client.complete(withStatusCode: 200, data: json)
         })
     }
@@ -75,35 +75,5 @@ class RemoteEventTypesLoaderTests: XCTestCase {
         ].compactMapValues { $0 }
         
         return (item, json)
-    }
-    
-    private func makeEventTypesJSON(_ types: [[String: Any]]) -> Data {
-        let json = types
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
-    class HTTPClientSpy: HTTPClient {
-        private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
-        var requestedURLs: [URL] {
-            return messages.map { $0.url }
-        }
-                
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-            messages.append((url, completion))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(
-                url: requestedURLs[index],
-                statusCode: code,
-                httpVersion: nil,
-                headerFields: nil
-            )!
-            messages[index].completion(.success((data, response)))
-        }
     }
 }

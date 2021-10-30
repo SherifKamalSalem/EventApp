@@ -18,7 +18,7 @@
 		427627C7272B3EBD00340B7F /* EventsCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 427627B9272B3EBC00340B7F /* EventsCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427627D3272B3EF400340B7F /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627D2272B3EF400340B7F /* EventType.swift */; };
 		427627E4272B462000340B7F /* EventLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627E3272B462000340B7F /* EventLoader.swift */; };
-		427627EC272B490600340B7F /* RemoteEventTypesLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */; };
+		427627EC272B490600340B7F /* LoadEventTypesFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627EB272B490600340B7F /* LoadEventTypesFromRemoteUseCaseTests.swift */; };
 		427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */; };
 		427627F7272BF2E700340B7F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627F6272BF2E700340B7F /* HTTPClient.swift */; };
 		427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627FA272C335200340B7F /* EventTypeMapper.swift */; };
@@ -27,6 +27,8 @@
 		428D10BE272CB2170009A375 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10BD272CB2170009A375 /* Event.swift */; };
 		428D10C8272CB2DE0009A375 /* EventListingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10C7272CB2DE0009A375 /* EventListingMapper.swift */; };
 		428D10CD272D1B800009A375 /* RemoteEventListingLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10CC272D1B800009A375 /* RemoteEventListingLoader.swift */; };
+		428D10D6272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10D5272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift */; };
+		428D10E1272D26110009A375 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10E0272D26110009A375 /* HTTPClientSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +63,7 @@
 		427627C6272B3EBD00340B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		427627D2272B3EF400340B7F /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		427627E3272B462000340B7F /* EventLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLoader.swift; sourceTree = "<group>"; };
-		427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoaderTests.swift; sourceTree = "<group>"; };
+		427627EB272B490600340B7F /* LoadEventTypesFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadEventTypesFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		427627F0272BEA0300340B7F /* RemoteEventTypesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventTypesLoader.swift; sourceTree = "<group>"; };
 		427627F6272BF2E700340B7F /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		427627FA272C335200340B7F /* EventTypeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypeMapper.swift; sourceTree = "<group>"; };
@@ -70,6 +72,8 @@
 		428D10BD272CB2170009A375 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		428D10C7272CB2DE0009A375 /* EventListingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListingMapper.swift; sourceTree = "<group>"; };
 		428D10CC272D1B800009A375 /* RemoteEventListingLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventListingLoader.swift; sourceTree = "<group>"; };
+		428D10D5272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadEventListingFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		428D10E0272D26110009A375 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			children = (
 				42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */,
 				4251059E272C56D000CC97DC /* SharedTestHelpers.swift */,
+				428D10E0272D26110009A375 /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				428D108E272CA3800009A375 /* Shared API */,
 				428D108F272CA3890009A375 /* Shared API Infra */,
 				42762800272C37FA00340B7F /* Event Type API */,
+				428D10D4272D21420009A375 /* Event Listing API */,
 			);
 			path = EventsCoreTests;
 			sourceTree = "<group>";
@@ -202,7 +208,7 @@
 		42762800272C37FA00340B7F /* Event Type API */ = {
 			isa = PBXGroup;
 			children = (
-				427627EB272B490600340B7F /* RemoteEventTypesLoaderTests.swift */,
+				427627EB272B490600340B7F /* LoadEventTypesFromRemoteUseCaseTests.swift */,
 			);
 			path = "Event Type API";
 			sourceTree = "<group>";
@@ -236,6 +242,14 @@
 			children = (
 				428D10CC272D1B800009A375 /* RemoteEventListingLoader.swift */,
 				428D10C7272CB2DE0009A375 /* EventListingMapper.swift */,
+			);
+			path = "Event Listing API";
+			sourceTree = "<group>";
+		};
+		428D10D4272D21420009A375 /* Event Listing API */ = {
+			isa = PBXGroup;
+			children = (
+				428D10D5272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift */,
 			);
 			path = "Event Listing API";
 			sourceTree = "<group>";
@@ -406,8 +420,10 @@
 			files = (
 				4251059F272C56D000CC97DC /* SharedTestHelpers.swift in Sources */,
 				428D1091272CA3C30009A375 /* RemoteLoaderTests.swift in Sources */,
-				427627EC272B490600340B7F /* RemoteEventTypesLoaderTests.swift in Sources */,
+				427627EC272B490600340B7F /* LoadEventTypesFromRemoteUseCaseTests.swift in Sources */,
+				428D10D6272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift in Sources */,
 				42762806272C449300340B7F /* URLSessionHTTPClientTests.swift in Sources */,
+				428D10E1272D26110009A375 /* HTTPClientSpy.swift in Sources */,
 				42510599272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
