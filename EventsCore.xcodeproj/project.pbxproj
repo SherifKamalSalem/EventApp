@@ -40,6 +40,7 @@
 		42E33BFA272D9E480003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
 		42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C04272DA9E00003843B /* EventsListingPresenter.swift */; };
 		42E33C1B272DB49A0003843B /* EventsListing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E33C1A272DB49A0003843B /* EventsListing.storyboard */; };
+		42E33C21272DC1F20003843B /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C20272DC1F20003843B /* EventCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
 		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
 		42E33C1A272DB49A0003843B /* EventsListing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventsListing.storyboard; sourceTree = "<group>"; };
+		42E33C20272DC1F20003843B /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				42E33C1A272DB49A0003843B /* EventsListing.storyboard */,
+				42E33C20272DC1F20003843B /* EventCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 			files = (
 				42E33BBC272D7E790003843B /* EventsPager.swift in Sources */,
 				42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */,
+				42E33C21272DC1F20003843B /* EventCell.swift in Sources */,
 				42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */,
 				42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */,
 			);

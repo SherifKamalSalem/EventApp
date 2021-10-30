@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.89009910820000004" green="0.89025193449999995" blue="0.89008945230000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="147" id="iWq-vY-G5Z">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="147" id="iWq-vY-G5Z" customClass="EventCell" customModule="EventsPlatform" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="147"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iWq-vY-G5Z" id="4w8-cq-v0S">
@@ -137,6 +137,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dateLabel" destination="VhP-El-u60" id="BPN-DX-QUK"/>
+                                    <outlet property="descriptionLabel" destination="ckv-Jo-UD6" id="DaI-uf-wxu"/>
+                                    <outlet property="eventImage" destination="ZSD-Ht-gyE" id="mD3-7w-tUG"/>
+                                    <outlet property="nameLabel" destination="SwE-5n-5no" id="yc0-RO-qve"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
