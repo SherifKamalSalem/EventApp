@@ -39,6 +39,7 @@
 		42E33BF5272D9E2E0003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
 		42E33BFA272D9E480003843B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
 		42E33C05272DA9E00003843B /* EventsListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33C04272DA9E00003843B /* EventsListingPresenter.swift */; };
+		42E33C1B272DB49A0003843B /* EventsListing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E33C1A272DB49A0003843B /* EventsListing.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
 		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
+		42E33C1A272DB49A0003843B /* EventsListing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventsListing.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +329,7 @@
 			children = (
 				428D10FF272D6A550009A375 /* Info.plist */,
 				42E33BD3272D8EF40003843B /* Events Pager */,
+				42E33C0E272DB3B50003843B /* Events Listing UI */,
 			);
 			path = EventsPlatform;
 			sourceTree = "<group>";
@@ -370,6 +373,22 @@
 				42E33C04272DA9E00003843B /* EventsListingPresenter.swift */,
 			);
 			path = "Events Listing Presentation";
+			sourceTree = "<group>";
+		};
+		42E33C0E272DB3B50003843B /* Events Listing UI */ = {
+			isa = PBXGroup;
+			children = (
+				42E33C0F272DB3D50003843B /* Views */,
+			);
+			path = "Events Listing UI";
+			sourceTree = "<group>";
+		};
+		42E33C0F272DB3D50003843B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42E33C1A272DB49A0003843B /* EventsListing.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +580,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E33C1B272DB49A0003843B /* EventsListing.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
