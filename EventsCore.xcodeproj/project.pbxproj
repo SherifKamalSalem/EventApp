@@ -31,7 +31,7 @@
 		428D10E1272D26110009A375 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10E0272D26110009A375 /* HTTPClientSpy.swift */; };
 		428D1105272D6A560009A375 /* EventsPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 428D10FC272D6A550009A375 /* EventsPlatform.framework */; };
 		428D110A272D6A560009A375 /* EventsPlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D1109272D6A560009A375 /* EventsPlatformTests.swift */; };
-		428D110C272D6A560009A375 /* EventsPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 428D10FE272D6A550009A375 /* EventsPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42E33BBC272D7E790003843B /* EventsPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BBB272D7E790003843B /* EventsPager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,11 +85,11 @@
 		428D10D5272D21810009A375 /* LoadEventListingFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadEventListingFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		428D10E0272D26110009A375 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		428D10FC272D6A550009A375 /* EventsPlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsPlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		428D10FE272D6A550009A375 /* EventsPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsPlatform.h; sourceTree = "<group>"; };
 		428D10FF272D6A550009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		428D1104272D6A560009A375 /* EventsPlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsPlatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		428D1109272D6A560009A375 /* EventsPlatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPlatformTests.swift; sourceTree = "<group>"; };
 		428D110B272D6A560009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,8 +292,8 @@
 		428D10FD272D6A550009A375 /* EventsPlatform */ = {
 			isa = PBXGroup;
 			children = (
-				428D10FE272D6A550009A375 /* EventsPlatform.h */,
 				428D10FF272D6A550009A375 /* Info.plist */,
+				42E33BBB272D7E790003843B /* EventsPager.swift */,
 			);
 			path = EventsPlatform;
 			sourceTree = "<group>";
@@ -322,7 +322,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				428D110C272D6A560009A375 /* EventsPlatform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +439,7 @@
 					};
 					428D10FB272D6A550009A375 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					428D1103272D6A560009A375 = {
 						CreatedOnToolsVersion = 12.4;
@@ -551,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E33BBC272D7E790003843B /* EventsPager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +833,7 @@
 		428D110E272D6A560009A375 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -849,6 +851,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -857,6 +860,7 @@
 		428D110F272D6A560009A375 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -883,6 +887,7 @@
 		428D1111272D6A560009A375 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = EventsPlatformTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -902,6 +907,7 @@
 		428D1112272D6A560009A375 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = EventsPlatformTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
