@@ -295,8 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				428D10FF272D6A550009A375 /* Info.plist */,
-				42E33BBB272D7E790003843B /* EventsPager.swift */,
-				42E33BC2272D81780003843B /* EventsPagerConfig.swift */,
+				42E33BD3272D8EF40003843B /* Events Pager */,
 			);
 			path = EventsPlatform;
 			sourceTree = "<group>";
@@ -308,6 +307,15 @@
 				428D110B272D6A560009A375 /* Info.plist */,
 			);
 			path = EventsPlatformTests;
+			sourceTree = "<group>";
+		};
+		42E33BD3272D8EF40003843B /* Events Pager */ = {
+			isa = PBXGroup;
+			children = (
+				42E33BBB272D7E790003843B /* EventsPager.swift */,
+				42E33BC2272D81780003843B /* EventsPagerConfig.swift */,
+			);
+			path = "Events Pager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
