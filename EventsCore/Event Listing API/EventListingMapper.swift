@@ -18,22 +18,21 @@ public class EventListingMapper {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         guard response.statusCode == OK_200,
-              let eventTypes = try? decoder.decode([EventDTO].self, from: data) else {
+              let events = try? decoder.decode([EventDTO].self, from: data) else {
             throw Error.invalidData
         }
-        
-        return eventTypes.map { $0.event }
+        return events.map { $0.event }
     }
     
     private struct EventDTO: Decodable {
         let id: String
         let longitude, latitude, endDate, startDate: String
-        let welcomeDescription: String
+        let description: String
         let cover: String
         let name: String
         
         var event: Event {
-            return Event(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, endDate: endDate, welcomeDescription: welcomeDescription, cover: cover)
+            return Event(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, endDate: endDate, description: description, cover: cover)
         }
     }
 }

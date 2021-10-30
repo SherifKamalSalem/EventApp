@@ -11,13 +11,13 @@ public struct Event: Equatable {
     let id: String
     let name: String
     let longitude, latitude, endDate, startDate: String
-    let welcomeDescription: String
+    let description: String
     let cover: String
     
     public init(id: String, name: String,
                 longitude: String,latitude: String,
                 startDate: String, endDate: String,
-                welcomeDescription: String, cover: String
+                description: String, cover: String
     ) {
         self.id = id
         self.name = name
@@ -25,7 +25,7 @@ public struct Event: Equatable {
         self.latitude = latitude
         self.startDate = startDate
         self.endDate = endDate
-        self.welcomeDescription = welcomeDescription
+        self.description = description
         self.cover = cover
     }
 }

@@ -33,7 +33,6 @@ public final class RemoteLoader<Resource> {
             switch result {
             case let .success((data, response)):
                 completion(self.map(data, from: response))
-                
             case .failure:
                 completion(.failure(Error.connectivity))
             }
