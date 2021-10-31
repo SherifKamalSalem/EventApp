@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EventType: Equatable {
+public struct EventType: Equatable, Hashable {
     let id: String
     let name: String
     
