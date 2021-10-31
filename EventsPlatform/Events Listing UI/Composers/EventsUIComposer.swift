@@ -10,13 +10,43 @@ import EventsCore
 
 public final class EventsUIComposer {
     public static func feedComposedWith(eventsLoader: EventsListingLoader) -> EventViewController {
-        let refreshController = EventsRefreshViewController(eventsLoader: eventsLoader)
+        let loadEventsAdapter = EventsLoaderPresentationAdapter(eventsLoader: eventsLoader)
+        let refreshController = EventsRefreshViewController(loadEvents: loadEventsAdapter.loadEvents)
         let feedController = EventViewController(refreshController: refreshController)
-        refreshController.onRefresh = { [weak feedController] feed in
-            feedController?.tableModel = feed.map { model in
-                EventCellController(viewModel: EventViewModelPresentable(event: model))
-            }
-        }
+        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: feedController))
+        loadEventsAdapter.presenter = presenter
         return feedController
+    }
+}
+
+private final class WeakRefVirtualProxy<T: AnyObject> {
+    private weak var object: T?
+    
+    init(_ object: T) {
+        self.object = object
+    }
+}
+
+extension WeakRefVirtualProxy: EventsLoadingView where T: EventsLoadingView {
+    func display(_ viewModel: EventsLoadingViewModelPresentable) {
+        object?.display(viewModel)
+    }
+}
+
+private final class EventsViewAdapter: EventsView {
+    private weak var controller: EventViewController?
+    
+    init(controller: EventViewController) {
+        self.controller = controller
+    }
+    
+    func display(_ viewModel: EventsViewModelPresentable) {
+        controller?.tableModel = viewModel.events.map { model in
+            EventCellController(viewModel: EventViewModelPresentable(event: model))
+        }
+    }
+}
+
+
     }
 }
