@@ -48,5 +48,24 @@ private final class EventsViewAdapter: EventsView {
 }
 
 
+private final class EventsLoaderPresentationAdapter {
+    private let eventsLoader: EventsListingLoader
+    var presenter: EventsListingPresenter?
+    
+    init(eventsLoader: EventsListingLoader) {
+        self.eventsLoader = eventsLoader
+    }
+    
+    func loadEvents() {
+        presenter?.didStartLoadingEvents()
+        
+        eventsLoader.load { [weak self] result in
+            switch result {
+            case let .success(events):
+                self?.presenter?.didFinishLoadingEvents(with: events)
+            case .failure:
+                self?.presenter?.didFinishLoadingEvents(with: [])
+            }
+        }
     }
 }
