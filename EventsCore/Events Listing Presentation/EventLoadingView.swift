@@ -9,6 +9,10 @@ import Foundation
 
 public struct EventsLoadingViewModelPresentable {
     public let isLoading: Bool
+    
+    public init(isLoading: Bool) {
+        self.isLoading = isLoading
+    }
 }
 
 public protocol EventsLoadingView {
