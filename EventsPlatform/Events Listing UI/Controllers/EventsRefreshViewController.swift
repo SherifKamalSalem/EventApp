@@ -8,28 +8,28 @@
 import UIKit
 import EventsCore
 
-final class EventsRefreshViewController: NSObject {
+final class EventsRefreshViewController: NSObject, EventsLoadingView {
     private(set) lazy var view: UIRefreshControl = {
         let view = UIRefreshControl()
         view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view
     }()
+        
+    private let loadEvents: () -> Void
     
-    private let eventsLoader: EventsListingLoader
-    
-    init(eventsLoader: EventsListingLoader) {
-        self.eventsLoader = eventsLoader
+    init(loadEvents: @escaping () -> Void) {
+        self.loadEvents = loadEvents
     }
     
-    var onRefresh: (([Event]) -> Void)?
-    
     @objc func refresh() {
-        view.beginRefreshing()
-        eventsLoader.load { [weak self] result in
-            if let events = try? result.get() {
-                self?.onRefresh?(events)
-            }
-            self?.view.endRefreshing()
+        loadEvents()
+    }
+    
+    func display(_ viewModel: EventsLoadingViewModelPresentable) {
+        if viewModel.isLoading {
+            view.beginRefreshing()
+        } else {
+            view.endRefreshing()
         }
     }
 }
