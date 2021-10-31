@@ -37,6 +37,18 @@ class EventsPager: NSObject {
         self.view = viewController.view
     }
     
+    public func setOptions(options: EventsPagerConfig) {
+        self.options = options
+    }
+    
+    public func setDataSource(dataSource: EventsPagerDataSource) {
+        self.dataSource = dataSource
+    }
+    
+    public func setDelegate(delegate: EventsPagerDelegate?) {
+        self.delegate = delegate
+    }
+    
     fileprivate func setupTabBarScrollView() {
         setupTabBarConstraints()
         if #available(iOS 11.0, *) {
