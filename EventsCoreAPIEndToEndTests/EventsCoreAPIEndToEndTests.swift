@@ -19,10 +19,10 @@ class EventsCoreAPIEndToEndTests: XCTestCase {
             XCTAssertEqual(eventTypes[2], expectedEventType(at: 2))
             XCTAssertEqual(eventTypes[3], expectedEventType(at: 3))
         case let .failure(error)?:
-            XCTFail("Expected successful feed result, got \(error) instead")
+            XCTFail("Expected successful events result, got \(error) instead")
             
         default:
-            XCTFail("Expected successful feed result, got no result instead")
+            XCTFail("Expected successful events result, got no result instead")
         }
     }
     
@@ -39,10 +39,10 @@ class EventsCoreAPIEndToEndTests: XCTestCase {
             XCTAssertEqual(events[6], expectedEvent(at: 6))
             XCTAssertEqual(events[7], expectedEvent(at: 7))
         case let .failure(error)?:
-            XCTFail("Expected successful feed result, got \(error) instead")
+            XCTFail("Expected successful events result, got \(error) instead")
             
         default:
-            XCTFail("Expected successful feed result, got no result instead")
+            XCTFail("Expected successful events result, got no result instead")
         }
     }
     
