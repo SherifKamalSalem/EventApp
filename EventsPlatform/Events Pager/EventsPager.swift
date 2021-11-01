@@ -29,8 +29,14 @@ class EventsPager: NSObject {
     fileprivate weak var dataSource: EventsPagerDataSource?
     fileprivate weak var delegate: EventsPagerDelegate?
     
+    fileprivate var tabIndicator = UIView()
+    fileprivate var tabIndicatorLeadingConstraint: NSLayoutConstraint?
+    fileprivate var tabIndicatorWidthConstraint: NSLayoutConstraint?
+    
     fileprivate var options = EventsPagerConfig()
     fileprivate var currentPageIndex = 0
+    fileprivate var tabsViewList = [EventsPagerTabView]()
+    fileprivate var tabsList = [String]()
     
     public init(viewController: UIViewController) {
         self.controller = viewController
@@ -47,6 +53,86 @@ class EventsPager: NSObject {
     
     public func setDelegate(delegate: EventsPagerDelegate?) {
         self.delegate = delegate
+    }
+    
+    public func build() {
+        setupTabBarScrollView()
+        setupPageViewController()
+        setupTabAndIndicator()
+    }
+    
+    fileprivate func setupTabAndIndicator() {
+        guard let tabs = dataSource?.tabsForPages() else { return }
+        self.tabsList = tabs
+        setupTabsForNormalAndEqualDistribution()
+        
+        if options.isTabIndicatorAvailable {
+            setupForAutolayout(view: tabIndicator, inView: tabBarScrollView)
+            tabIndicator.backgroundColor = options.tabIndicatorViewBackgroundColor
+            tabIndicator.heightAnchor.constraint(equalToConstant: options.tabIndicatorViewHeight).isActive = true
+            tabIndicator.bottomAnchor.constraint(equalTo: tabBarScrollView.bottomAnchor).isActive = true
+            
+            let activeTab = self.tabsViewList[currentPageIndex]
+            
+            tabIndicatorLeadingConstraint = tabIndicator.leadingAnchor.constraint(equalTo: activeTab.leadingAnchor)
+            tabIndicatorWidthConstraint = tabIndicator.widthAnchor.constraint(equalTo: activeTab.widthAnchor)
+            
+            tabIndicatorLeadingConstraint?.isActive = true
+            tabIndicatorWidthConstraint?.isActive = true
+        }
+        
+        if options.isTabHighlightAvailable {
+            self.tabsViewList[currentPageIndex].addHighlight(options: self.options)
+        }
+        
+        if options.isTabBarShadowAvailable {
+            
+            tabBarScrollView.layer.masksToBounds = false
+            tabBarScrollView.layer.shadowColor = options.shadowColor.cgColor
+            tabBarScrollView.layer.shadowOpacity = options.shadowOpacity
+            tabBarScrollView.layer.shadowOffset = options.shadowOffset
+            tabBarScrollView.layer.shadowRadius = options.shadowRadius
+            
+            view.bringSubviewToFront(tabBarScrollView)
+        }
+    }
+    
+    fileprivate func setupTabsForNormalAndEqualDistribution() {
+        var maxWidth: CGFloat = 0
+        
+        var lastTab: EventsPagerTabView?
+        
+        for (index, eachTab) in tabsList.enumerated() {
+            
+            let tabView = EventsPagerTabView()
+            setupForAutolayout(view: tabView, inView: tabBarScrollView)
+            
+            tabView.backgroundColor = options.tabViewBackgroundDefaultColor
+            tabView.setup(tab: eachTab, options: options)
+            
+            if let previousTab = lastTab {
+                tabView.leadingAnchor.constraint(equalTo: previousTab.trailingAnchor).isActive = true
+            } else {
+                tabView.leadingAnchor.constraint(equalTo: tabBarScrollView.leadingAnchor).isActive = true
+            }
+            
+            tabView.topAnchor.constraint(equalTo: tabBarScrollView.topAnchor).isActive = true
+            tabView.bottomAnchor.constraint(equalTo: tabBarScrollView.bottomAnchor).isActive = true
+            tabView.heightAnchor.constraint(equalToConstant: options.tabViewHeight).isActive = true
+            
+            tabView.tag = index
+            tabsViewList.append(tabView)
+            
+            maxWidth = max(maxWidth, tabView.width)
+            lastTab = tabView
+        }
+        
+        lastTab?.trailingAnchor.constraint(equalTo: tabBarScrollView.trailingAnchor).isActive = true
+        
+        // Second pass to set Width for all tabs
+        tabsViewList.forEach { tabView in
+            tabView.widthAnchor.constraint(equalToConstant: tabView.width).isActive = true
+        }
     }
     
     fileprivate func setupTabBarScrollView() {
@@ -105,6 +191,7 @@ class EventsPager: NSObject {
         let direction:UIPageViewController.NavigationDirection = (index > previousIndex ) ? .forward : .reverse
         
         delegate?.willMoveToControllerAtIndex(index: index)
+        setupCurrentPageIndicator(currentIndex: index, previousIndex: currentPageIndex)
         pageController?.setViewControllers([selectedViewController], direction: direction, animated: true, completion: { (isCompleted) in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -144,6 +231,37 @@ class EventsPager: NSObject {
             self.pageController?.setViewControllers([firstPageController], direction: .forward, animated: false, completion: nil)
         }
     }
+    
+    fileprivate func setupCurrentPageIndicator(currentIndex: Int, previousIndex: Int) {
+        self.currentPageIndex = currentIndex
+        
+        let activeTab = tabsViewList[currentIndex]
+        let activeFrame = activeTab.frame
+        if options.isTabHighlightAvailable {
+            self.tabsViewList[previousIndex].removeHighlight(options: self.options)
+            UIView.animate(withDuration: 0.4, animations: {
+                self.tabsViewList[currentIndex].addHighlight(options: self.options)
+            })
+        }
+        
+        if options.isTabIndicatorAvailable {
+            tabIndicatorLeadingConstraint?.isActive = false
+            tabIndicatorWidthConstraint?.isActive = false
+            
+            tabIndicatorLeadingConstraint = tabIndicator.leadingAnchor.constraint(equalTo: activeTab.leadingAnchor)
+            tabIndicatorWidthConstraint = tabIndicator.widthAnchor.constraint(equalTo: activeTab.widthAnchor)
+            
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.5) {
+                self.tabIndicatorWidthConstraint?.isActive = true
+                self.tabIndicatorLeadingConstraint?.isActive = true
+                self.tabBarScrollView.scrollRectToVisible(activeFrame, animated: false)
+                self.tabBarScrollView.layoutIfNeeded()
+            }
+            return
+        }
+        self.tabBarScrollView.scrollRectToVisible(activeFrame, animated: true)
+    }
 }
 
 extension EventsPager: UIPageViewControllerDataSource {
@@ -164,6 +282,7 @@ extension EventsPager: UIPageViewControllerDelegate {
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let pageIndex = pageViewController.viewControllers?.first?.view.tag else { return }
         if completed && finished {
+            setupCurrentPageIndicator(currentIndex: pageIndex, previousIndex: currentPageIndex)
             delegate?.didMoveToControllerAtIndex(index: pageIndex)
         }
     }
