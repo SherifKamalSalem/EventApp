@@ -6,13 +6,23 @@
 //
 
 import UIKit
+import EventsCore
 
-class MainViewController: UIViewController {
-
-    override func viewDidLoad() {
+public class MainViewController: UIViewController {
+    private var pager: EventsPager?
+    var eventPagerTabController: EventPagerTabController?
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupPager()
     }
-
+    
+    private func setupPager() {
+        pager = EventsPager(viewController: self)
+        pager?.setOptions(options: EventsPagerConfig())
+        if let eventPagerTabController = eventPagerTabController {
+            pager?.setDataSource(dataSource: eventPagerTabController)
+        }
+        pager?.build()
+    }
 }

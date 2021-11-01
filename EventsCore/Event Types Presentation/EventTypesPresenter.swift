@@ -24,4 +24,6 @@ public final class EventTypesPresenter {
         eventTypesView.display(EventTypesViewModelPresentable(eventTypes: eventTypes))
         loadingView.display(.init(isLoading: false))
     }
+    
+    
 }
