@@ -30,7 +30,8 @@ public final class EventViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).tableView(tableView, cellForRowAt: indexPath)
+        let controller = cellController(forRowAt: indexPath)
+        return controller.tableView(tableView, cellForRowAt: indexPath)
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> EventCellController {
