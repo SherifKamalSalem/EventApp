@@ -8,19 +8,15 @@
 import UIKit
 
 public final class EventViewController: UITableViewController {
-    private var refreshController: EventsRefreshViewController?
+    var refreshController: EventsRefreshViewController?
     var tableModel = [EventCellController]() {
-        didSet { tableView.reloadData() }
-    }
-
-    convenience init(refreshController: EventsRefreshViewController) {
-        self.init()
-        self.refreshController = refreshController
+        didSet {
+            self.tableView.reloadData()
+        }
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }
