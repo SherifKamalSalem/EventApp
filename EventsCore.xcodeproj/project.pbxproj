@@ -27,6 +27,10 @@
 		425105CD272C961300CC97DC /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425105CC272C961300CC97DC /* RemoteLoader.swift */; };
 		426895092731C30800520197 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426895082731C30800520197 /* EventStore.swift */; };
 		4268950F2731C38200520197 /* LocalEventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268950E2731C38200520197 /* LocalEventDTO.swift */; };
+		426895162731C7C400520197 /* CoreDataEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426895152731C7C400520197 /* CoreDataEventStore.swift */; };
+		426895212731C82D00520197 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426895202731C82D00520197 /* CoreDataHelpers.swift */; };
+		4268952C2731CAC900520197 /* EventStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4268952A2731CAC900520197 /* EventStore.xcdatamodeld */; };
+		4268953A2731CDC800520197 /* ManagedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426895392731CDC800520197 /* ManagedEvent.swift */; };
 		427627C0272B3EBD00340B7F /* EventsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427627B6272B3EBC00340B7F /* EventsCore.framework */; };
 		427627C7272B3EBD00340B7F /* EventsCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 427627B9272B3EBC00340B7F /* EventsCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427627D3272B3EF400340B7F /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427627D2272B3EF400340B7F /* EventType.swift */; };
@@ -127,6 +131,10 @@
 		425105CC272C961300CC97DC /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		426895082731C30800520197 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		4268950E2731C38200520197 /* LocalEventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEventDTO.swift; sourceTree = "<group>"; };
+		426895152731C7C400520197 /* CoreDataEventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataEventStore.swift; sourceTree = "<group>"; };
+		426895202731C82D00520197 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		4268952B2731CAC900520197 /* EventStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventStore.xcdatamodel; sourceTree = "<group>"; };
+		426895392731CDC800520197 /* ManagedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedEvent.swift; sourceTree = "<group>"; };
 		427627B6272B3EBC00340B7F /* EventsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		427627B9272B3EBC00340B7F /* EventsCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsCore.h; sourceTree = "<group>"; };
 		427627BA272B3EBC00340B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -296,10 +304,30 @@
 		426895072731C2EE00520197 /* Event Listing Cache */ = {
 			isa = PBXGroup;
 			children = (
+				426895142731C77B00520197 /* Event Listing Cache Infrastructure  */,
 				426895082731C30800520197 /* EventStore.swift */,
 				4268950E2731C38200520197 /* LocalEventDTO.swift */,
 			);
 			path = "Event Listing Cache";
+			sourceTree = "<group>";
+		};
+		426895142731C77B00520197 /* Event Listing Cache Infrastructure  */ = {
+			isa = PBXGroup;
+			children = (
+				4268951F2731C81B00520197 /* CoreData */,
+				426895152731C7C400520197 /* CoreDataEventStore.swift */,
+			);
+			path = "Event Listing Cache Infrastructure ";
+			sourceTree = "<group>";
+		};
+		4268951F2731C81B00520197 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				426895202731C82D00520197 /* CoreDataHelpers.swift */,
+				4268952A2731CAC900520197 /* EventStore.xcdatamodeld */,
+				426895392731CDC800520197 /* ManagedEvent.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		427627AC272B3EBC00340B7F = {
@@ -738,8 +766,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				428D10BE272CB2170009A375 /* Event.swift in Sources */,
+				426895162731C7C400520197 /* CoreDataEventStore.swift in Sources */,
 				42466A25272EE9AF00F00861 /* EventsView.swift in Sources */,
 				426895092731C30800520197 /* EventStore.swift in Sources */,
+				4268953A2731CDC800520197 /* ManagedEvent.swift in Sources */,
+				4268952C2731CAC900520197 /* EventStore.xcdatamodeld in Sources */,
 				427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */,
 				4268950F2731C38200520197 /* LocalEventDTO.swift in Sources */,
 				4214276D272F24B000F4BE6E /* EventTypesPresenter.swift in Sources */,
@@ -754,6 +785,7 @@
 				428D10CD272D1B800009A375 /* RemoteEventListingLoader.swift in Sources */,
 				42F52902272E0CAA00F960A7 /* EventListingLoader.swift in Sources */,
 				425105A3272C72A600CC97DC /* URLSessionHTTPClient.swift in Sources */,
+				426895212731C82D00520197 /* CoreDataHelpers.swift in Sources */,
 				42466A1F272EE96100F00861 /* EventViewModelPresentable.swift in Sources */,
 				42142777272F24EF00F4BE6E /* EventTypesView.swift in Sources */,
 			);
@@ -1229,6 +1261,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4268952A2731CAC900520197 /* EventStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4268952B2731CAC900520197 /* EventStore.xcdatamodel */,
+			);
+			currentVersion = 4268952B2731CAC900520197 /* EventStore.xcdatamodel */;
+			path = EventStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 427627AD272B3EBC00340B7F /* Project object */;
 }
