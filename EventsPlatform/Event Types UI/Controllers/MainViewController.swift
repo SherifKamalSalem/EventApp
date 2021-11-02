@@ -9,12 +9,20 @@ import UIKit
 import EventsCore
 
 public class MainViewController: UIViewController {
+    
     private var pager: EventsPager?
     var eventPagerTabController: EventPagerTabController?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupPager()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.barTintColor = .darkGray
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     private func setupPager() {
