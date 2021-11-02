@@ -29,6 +29,17 @@ public final class CoreDataEventStore: EventStore {
         }
     }
     
+    public func retrieve(completion: @escaping RetrievalCompletion) {
+        perform { context in
+            do {
+                let cache = try ManagedEvent.find(in: context).map { $0.local }
+                completion(.success(cache))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
         let context = self.context
         context.perform { action(context) }

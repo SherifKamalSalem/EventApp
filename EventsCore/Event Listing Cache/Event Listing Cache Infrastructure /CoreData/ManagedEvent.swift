@@ -34,6 +34,12 @@ extension ManagedEvent {
         })
     }
     
+    internal static func find(in context: NSManagedObjectContext) throws -> [ManagedEvent] {
+        let request = NSFetchRequest<ManagedEvent>(entityName: entity().name!)
+        request.returnsObjectsAsFaults = false
+        return try context.fetch(request)
+    }
+    
     internal var local: LocalEventDTO {
         return LocalEventDTO(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, eventDescription: eventDescription, cover: cover)
     }
