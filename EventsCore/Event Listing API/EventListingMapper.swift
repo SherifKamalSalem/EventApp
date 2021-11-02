@@ -27,12 +27,12 @@ public class EventListingMapper {
     private struct EventDTO: Decodable {
         let id: String
         let longitude, latitude, endDate, startDate: String
-        let description: String
+        let description: String?
         let cover: String
         let name: String
         
         var event: Event {
-            return Event(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, endDate: endDate, description: description, cover: cover)
+            return Event(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, endDate: endDate, description: description ?? "", cover: cover)
         }
     }
 }
