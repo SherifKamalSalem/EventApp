@@ -8,6 +8,30 @@
 import UIKit
 import EventsCore
 
+public final class EventTypesUIComposer {
+    public static func eventTypesComposedWith(eventTypesLoader: EventTypesLoader, completion: @escaping (UIViewController) -> Void) {
+        let loadEventsAdapter = EventTypesLoaderPresentationAdapter(eventTypesLoader: eventTypesLoader)
+        loadEventsAdapter.loadEventTypes() { eventTypes in
+            loadEventsAdapter.tabs = eventTypes.map { $0.name }
+            let pagerTabController = EventPagerTabController(
+                model: EventTypesViewModelPresentable(eventTypes: eventTypes),
+                dataSource: loadEventsAdapter)
+            DispatchQueue.main.async {
+                let controller = makeMainViewController(controller: pagerTabController)
+                completion(controller)
+            }
+        }
+    }
+    
+    private static func makeMainViewController(controller: EventPagerTabController) -> MainViewController {
+        let bundle = Bundle(for: MainViewController.self)
+        let storyboard = UIStoryboard(name: "EventTypes", bundle: bundle)
+        let mainController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+        mainController.eventPagerTabController = controller
+        return mainController
+    }
+}
+
 private final class EventTypesLoaderPresentationAdapter {
     private let eventTypesLoader: EventTypesLoader
     fileprivate var tabs = [String]()
