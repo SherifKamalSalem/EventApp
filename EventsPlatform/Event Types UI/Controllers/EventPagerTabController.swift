@@ -6,31 +6,32 @@
 //
 
 import UIKit
+import EventsCore
 
 public class EventPagerTabController: NSObject {
-    private let viewControllerAtPosition: ((Int) -> UIViewController)
-    private let tabs: [String]
+    private let dataSource: EventsPagerDataSource
+    private let model: EventTypesViewModelPresentable
     
-    public init(tabs: [String], viewControllerAtPosition: @escaping (Int) -> UIViewController) {
-        self.viewControllerAtPosition = viewControllerAtPosition
-        self.tabs = tabs
+    public init(model: EventTypesViewModelPresentable, dataSource: EventsPagerDataSource) {
+        self.dataSource = dataSource
+        self.model = model
     }
 }
 
 extension EventPagerTabController: EventsPagerDataSource {
-    func numberOfPages() -> Int {
-        return tabs.count
+    public func numberOfPages() -> Int {
+        return dataSource.numberOfPages()
     }
     
-    func viewControllerAtPosition(position: Int) -> UIViewController {
-        return viewControllerAtPosition(position)
+    public func viewControllerAtPosition(position: Int) -> UIViewController {
+        return dataSource.viewControllerAtPosition(position: position)
     }
     
-    func tabsForPages() -> [String] {
-        return tabs
+    public func tabsForPages() -> [String] {
+        return dataSource.tabsForPages()
     }
     
-    func startEventsPagerAtIndex() -> Int {
-        return 0
+    public func startEventsPagerAtIndex() -> Int {
+        return dataSource.startEventsPagerAtIndex()
     }
 }
