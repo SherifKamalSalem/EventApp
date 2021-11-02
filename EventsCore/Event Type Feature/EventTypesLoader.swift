@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol EventLoader {
+public protocol EventTypesLoader {
     typealias Result = Swift.Result<[EventType], Error>
     func load(completion: @escaping (Result) -> Void)
 }

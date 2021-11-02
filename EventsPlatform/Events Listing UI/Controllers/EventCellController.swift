@@ -20,10 +20,10 @@ final class EventCellController: NSObject {
 extension EventCellController {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as? EventCell
+        cell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as? EventCell
         cell?.dateLabel.text = viewModel.startDate
         cell?.descriptionLabel.text = viewModel.description
         cell?.nameLabel.text = viewModel.name
-        return cell!
+        return cell ?? UITableViewCell()
     }
 }

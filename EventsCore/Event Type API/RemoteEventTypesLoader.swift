@@ -9,8 +9,8 @@ import Foundation
 
 public typealias RemoteEventTypesLoader = RemoteLoader<[EventType]>
 
-public extension RemoteEventTypesLoader {
-    convenience init(url: URL, client: HTTPClient) {
+extension RemoteEventTypesLoader: EventTypesLoader {
+    public convenience init(url: URL, client: HTTPClient) {
         self.init(url: url, client: client, mapper: EventTypeMapper.map)
     }
 }

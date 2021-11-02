@@ -5,17 +5,26 @@
 //  Created by Sherif Kamal on 10/31/21.
 //
 
-import Foundation
+import UIKit
 import EventsCore
 
 public final class EventsUIComposer {
-    public static func feedComposedWith(eventsLoader: EventsListingLoader) -> EventViewController {
+    public static func eventsComposedWith(eventsLoader: EventsListingLoader) -> EventViewController {
         let loadEventsAdapter = EventsLoaderPresentationAdapter(eventsLoader: eventsLoader)
         let refreshController = EventsRefreshViewController(loadEvents: loadEventsAdapter.loadEvents)
-        let feedController = EventViewController(refreshController: refreshController)
-        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: feedController))
+        let controller = makeEventsViewController(refreshController: refreshController)
+        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: controller))
         loadEventsAdapter.presenter = presenter
-        return feedController
+        return controller
+    }
+    
+    
+    private static func makeEventsViewController(refreshController: EventsRefreshViewController) -> EventViewController {
+        let bundle = Bundle(for: EventViewController.self)
+        let storyboard = UIStoryboard(name: "EventsListing", bundle: bundle)
+        let eventsController = storyboard.instantiateInitialViewController() as! EventViewController
+        eventsController.refreshController = refreshController
+        return eventsController
     }
 }
 

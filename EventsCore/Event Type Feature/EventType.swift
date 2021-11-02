@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct EventType: Equatable {
-    let id: String
-    let name: String
+public struct EventType: Equatable, Hashable {
+    public let id: String
+    public let name: String
     
     public init(id: String, name: String) {
         self.id = id
