@@ -19,7 +19,7 @@ public struct EventViewModelPresentable {
     }
     
     public var description: String {
-        return event.description ?? ""
+        return event.description
     }
     
     public var startDate: String {
