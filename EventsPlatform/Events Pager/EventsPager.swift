@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol EventsPagerDataSource: AnyObject {
+public protocol EventsPagerDataSource: AnyObject {
     func numberOfPages() -> Int
     func viewControllerAtPosition(position: Int) -> UIViewController
     func tabsForPages() -> [String]
@@ -15,7 +15,7 @@ protocol EventsPagerDataSource: AnyObject {
 }
 
 
-protocol EventsPagerDelegate: AnyObject {
+public protocol EventsPagerDelegate: AnyObject {
     func willMoveToControllerAtIndex(index: Int)
     func didMoveToControllerAtIndex(index: Int)
 }

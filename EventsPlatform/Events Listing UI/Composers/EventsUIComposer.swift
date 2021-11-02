@@ -9,13 +9,13 @@ import UIKit
 import EventsCore
 
 public final class EventsUIComposer {
-    public static func feedComposedWith(eventsLoader: EventsListingLoader) -> EventViewController {
+    public static func eventsComposedWith(eventsLoader: EventsListingLoader) -> EventViewController {
         let loadEventsAdapter = EventsLoaderPresentationAdapter(eventsLoader: eventsLoader)
         let refreshController = EventsRefreshViewController(loadEvents: loadEventsAdapter.loadEvents)
-        let feedController = makeEventsViewController(refreshController: refreshController)
-        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: feedController))
+        let controller = makeEventsViewController(refreshController: refreshController)
+        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: controller))
         loadEventsAdapter.presenter = presenter
-        return feedController
+        return controller
     }
     
     

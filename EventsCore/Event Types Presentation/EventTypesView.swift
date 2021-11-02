@@ -9,6 +9,10 @@ import Foundation
 
 public struct EventTypesViewModelPresentable {
     public let eventTypes: [EventType]
+    
+    public init(eventTypes: [EventType]) {
+        self.eventTypes = eventTypes
+    }
 }
 
 public protocol EventTypesView {
