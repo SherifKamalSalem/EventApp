@@ -19,8 +19,7 @@ internal class ManagedEvent: NSManagedObject {
 }
 
 extension ManagedEvent {
-    
-    internal static func events(from localEvents: [LocalEventDTO], in context: NSManagedObjectContext) -> NSOrderedSet {
+    static func events(from localEvents: [LocalEventDTO], in context: NSManagedObjectContext) -> NSOrderedSet {
         return NSOrderedSet(array: localEvents.map { local in
             let managed = ManagedEvent(context: context)
             managed.id = local.id
@@ -34,10 +33,16 @@ extension ManagedEvent {
         })
     }
     
-    internal static func find(in context: NSManagedObjectContext) throws -> [ManagedEvent] {
+    static func findList(in context: NSManagedObjectContext) throws -> [ManagedEvent] {
         let request = NSFetchRequest<ManagedEvent>(entityName: entity().name!)
         request.returnsObjectsAsFaults = false
         return try context.fetch(request)
+    }
+    
+    static func findObject(in context: NSManagedObjectContext) throws -> ManagedEvent? {
+        let request = NSFetchRequest<ManagedEvent>(entityName: entity().name!)
+        request.returnsObjectsAsFaults = false
+        return try context.fetch(request).first
     }
     
     internal var local: LocalEventDTO {

@@ -8,9 +8,11 @@
 import Foundation
 
 public protocol EventStore {
-    typealias InsertionCompletion = (Error?) -> Void
+    typealias InsertionCompletion = (Result<Void, Error>) -> Void
     typealias RetrievalCompletion = (Result<[LocalEventDTO], Error>) -> Void
+    typealias DeletionCompletion = (Result<Void, Error>) -> Void
     
     func insert(_ events: [LocalEventDTO], completion: @escaping InsertionCompletion)
     func retrieve(completion: @escaping RetrievalCompletion)
+    func deleteCachedFeed(completion: @escaping DeletionCompletion)
 }

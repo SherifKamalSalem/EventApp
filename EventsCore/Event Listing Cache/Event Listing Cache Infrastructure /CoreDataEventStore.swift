@@ -22,9 +22,9 @@ public final class CoreDataEventStore: EventStore {
             do {
                 _ = ManagedEvent.events(from: localEvents, in: context)
                 try context.save()
-                completion(nil)
+                completion(.success(()))
             } catch {
-                completion(error)
+                completion(.failure(error))
             }
         }
     }
@@ -32,11 +32,19 @@ public final class CoreDataEventStore: EventStore {
     public func retrieve(completion: @escaping RetrievalCompletion) {
         perform { context in
             do {
-                let cache = try ManagedEvent.find(in: context).map { $0.local }
+                let cache = try ManagedEvent.findList(in: context).map { $0.local }
                 completion(.success(cache))
             } catch {
                 completion(.failure(error))
             }
+        }
+    }
+    
+    public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+        perform { context in
+            completion(Result {
+                try ManagedEvent.findObject(in: context).map(context.delete).map(context.save)
+            })
         }
     }
     
