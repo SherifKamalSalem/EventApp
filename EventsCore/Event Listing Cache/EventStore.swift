@@ -12,7 +12,7 @@ public protocol EventStore {
     typealias RetrievalCompletion = (Result<[LocalEventDTO], Error>) -> Void
     typealias DeletionCompletion = (Result<Void, Error>) -> Void
     
-    func insert(_ events: [LocalEventDTO], completion: @escaping InsertionCompletion)
-    func retrieve(completion: @escaping RetrievalCompletion)
-    func deleteCachedFeed(completion: @escaping DeletionCompletion)
+    func insert(_ events: [LocalEventDTO], for type: LocalEventTypeDTO, completion: @escaping InsertionCompletion)
+    func retrieve(for typeName: String, completion: @escaping RetrievalCompletion)
+    func deleteCachedEvents(completion: @escaping DeletionCompletion)
 }

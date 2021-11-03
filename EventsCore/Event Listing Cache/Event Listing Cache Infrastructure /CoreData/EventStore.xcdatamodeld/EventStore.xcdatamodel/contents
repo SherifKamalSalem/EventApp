@@ -8,8 +8,15 @@
         <attribute name="longitude" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="startDate" attributeType="String"/>
+        <relationship name="ofType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedEventType" inverseName="events" inverseEntity="ManagedEventType"/>
+    </entity>
+    <entity name="ManagedEventType" representedClassName="ManagedEventType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedEvent" inverseName="ofType" inverseEntity="ManagedEvent"/>
     </entity>
     <elements>
-        <element name="ManagedEvent" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="ManagedEvent" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="ManagedEventType" positionX="-54" positionY="45" width="128" height="88"/>
     </elements>
 </model>

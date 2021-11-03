@@ -7,7 +7,7 @@
 //
 import CoreData
 
-@objc(ManagedFeedImage)
+@objc(ManagedEvent)
 internal class ManagedEvent: NSManagedObject {
     @NSManaged internal var id: String
     @NSManaged internal var eventDescription: String?
@@ -16,6 +16,7 @@ internal class ManagedEvent: NSManagedObject {
     @NSManaged internal var latitude: String
     @NSManaged internal var startDate: String
     @NSManaged internal var cover: String
+    @NSManaged internal var ofType: NSOrderedSet
 }
 
 extension ManagedEvent {
@@ -33,8 +34,12 @@ extension ManagedEvent {
         })
     }
     
-    static func findList(in context: NSManagedObjectContext) throws -> [ManagedEvent] {
+    static func fetchEvents(with typeName: String, in context: NSManagedObjectContext) throws -> [ManagedEvent] {
         let request = NSFetchRequest<ManagedEvent>(entityName: entity().name!)
+        request.relationshipKeyPathsForPrefetching = ["cars"]
+
+        request.predicate = NSPredicate(format: "ANY ofType.name == c %@",
+                                     argumentArray: [typeName])
         request.returnsObjectsAsFaults = false
         return try context.fetch(request)
     }
@@ -45,7 +50,7 @@ extension ManagedEvent {
         return try context.fetch(request).first
     }
     
-    internal var local: LocalEventDTO {
+    public var local: LocalEventDTO {
         return LocalEventDTO(id: id, name: name, longitude: longitude, latitude: latitude, startDate: startDate, eventDescription: eventDescription, cover: cover)
     }
 }

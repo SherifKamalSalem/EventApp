@@ -19,6 +19,10 @@
 		42466A1F272EE96100F00861 /* EventViewModelPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A1E272EE96100F00861 /* EventViewModelPresentable.swift */; };
 		42466A25272EE9AF00F00861 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A24272EE9AF00F00861 /* EventsView.swift */; };
 		42466A2B272EE9CA00F00861 /* EventLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A2A272EE9CA00F00861 /* EventLoadingView.swift */; };
+		4249B3A5273320FD001C0C0B /* LocalEventTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249B3A4273320FD001C0C0B /* LocalEventTypeDTO.swift */; };
+		4249B3AF2733214C001C0C0B /* EventTypesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249B3AE2733214C001C0C0B /* EventTypesStore.swift */; };
+		4249B3B927332386001C0C0B /* ManagedEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249B3B827332386001C0C0B /* ManagedEventType.swift */; };
+		4249B3C327332ADD001C0C0B /* CoreDataEventStore+EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249B3C227332ADD001C0C0B /* CoreDataEventStore+EventStore.swift */; };
 		42510599272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */; };
 		4251059F272C56D000CC97DC /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4251059E272C56D000CC97DC /* SharedTestHelpers.swift */; };
 		425105A3272C72A600CC97DC /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425105A2272C72A600CC97DC /* URLSessionHTTPClient.swift */; };
@@ -124,6 +128,10 @@
 		42466A1E272EE96100F00861 /* EventViewModelPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModelPresentable.swift; sourceTree = "<group>"; };
 		42466A24272EE9AF00F00861 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		42466A2A272EE9CA00F00861 /* EventLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLoadingView.swift; sourceTree = "<group>"; };
+		4249B3A4273320FD001C0C0B /* LocalEventTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEventTypeDTO.swift; sourceTree = "<group>"; };
+		4249B3AE2733214C001C0C0B /* EventTypesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesStore.swift; sourceTree = "<group>"; };
+		4249B3B827332386001C0C0B /* ManagedEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedEventType.swift; sourceTree = "<group>"; };
+		4249B3C227332ADD001C0C0B /* CoreDataEventStore+EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataEventStore+EventStore.swift"; sourceTree = "<group>"; };
 		42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4251059E272C56D000CC97DC /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		425105A2272C72A600CC97DC /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -308,6 +316,8 @@
 			children = (
 				426895142731C77B00520197 /* Event Listing Cache Infrastructure  */,
 				426895082731C30800520197 /* EventStore.swift */,
+				4249B3AE2733214C001C0C0B /* EventTypesStore.swift */,
+				4249B3A4273320FD001C0C0B /* LocalEventTypeDTO.swift */,
 				4268950E2731C38200520197 /* LocalEventDTO.swift */,
 			);
 			path = "Event Listing Cache";
@@ -318,6 +328,7 @@
 			children = (
 				4268951F2731C81B00520197 /* CoreData */,
 				426895152731C7C400520197 /* CoreDataEventStore.swift */,
+				4249B3C227332ADD001C0C0B /* CoreDataEventStore+EventStore.swift */,
 			);
 			path = "Event Listing Cache Infrastructure ";
 			sourceTree = "<group>";
@@ -328,6 +339,7 @@
 				426895202731C82D00520197 /* CoreDataHelpers.swift */,
 				4268952A2731CAC900520197 /* EventStore.xcdatamodeld */,
 				426895392731CDC800520197 /* ManagedEvent.swift */,
+				4249B3B827332386001C0C0B /* ManagedEventType.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -770,6 +782,7 @@
 			files = (
 				428D10BE272CB2170009A375 /* Event.swift in Sources */,
 				426895162731C7C400520197 /* CoreDataEventStore.swift in Sources */,
+				4249B3B927332386001C0C0B /* ManagedEventType.swift in Sources */,
 				42466A25272EE9AF00F00861 /* EventsView.swift in Sources */,
 				426895092731C30800520197 /* EventStore.swift in Sources */,
 				4268953A2731CDC800520197 /* ManagedEvent.swift in Sources */,
@@ -777,6 +790,7 @@
 				427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */,
 				4268950F2731C38200520197 /* LocalEventDTO.swift in Sources */,
 				4214276D272F24B000F4BE6E /* EventTypesPresenter.swift in Sources */,
+				4249B3C327332ADD001C0C0B /* CoreDataEventStore+EventStore.swift in Sources */,
 				4238D08227326DF400575E20 /* EventsCache.swift in Sources */,
 				427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */,
 				427627D3272B3EF400340B7F /* EventType.swift in Sources */,
@@ -788,9 +802,11 @@
 				427627E4272B462000340B7F /* EventTypesLoader.swift in Sources */,
 				428D10CD272D1B800009A375 /* RemoteEventListingLoader.swift in Sources */,
 				42F52902272E0CAA00F960A7 /* EventListingLoader.swift in Sources */,
+				4249B3AF2733214C001C0C0B /* EventTypesStore.swift in Sources */,
 				425105A3272C72A600CC97DC /* URLSessionHTTPClient.swift in Sources */,
 				426895212731C82D00520197 /* CoreDataHelpers.swift in Sources */,
 				42466A1F272EE96100F00861 /* EventViewModelPresentable.swift in Sources */,
+				4249B3A5273320FD001C0C0B /* LocalEventTypeDTO.swift in Sources */,
 				42142777272F24EF00F4BE6E /* EventTypesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
