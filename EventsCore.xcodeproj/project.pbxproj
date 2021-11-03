@@ -15,6 +15,7 @@
 		42142795272F4ACD00F4BE6E /* EventsPagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42142794272F4ACD00F4BE6E /* EventsPagerTabView.swift */; };
 		42387FCD273007B300C458F2 /* EventPagerTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42387FCC273007B300C458F2 /* EventPagerTabController.swift */; };
 		42387FD327300A6000C458F2 /* EventTypesUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42387FD227300A6000C458F2 /* EventTypesUIComposer.swift */; };
+		4238D08227326DF400575E20 /* EventsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238D08127326DF400575E20 /* EventsCache.swift */; };
 		42466A1F272EE96100F00861 /* EventViewModelPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A1E272EE96100F00861 /* EventViewModelPresentable.swift */; };
 		42466A25272EE9AF00F00861 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A24272EE9AF00F00861 /* EventsView.swift */; };
 		42466A2B272EE9CA00F00861 /* EventLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A2A272EE9CA00F00861 /* EventLoadingView.swift */; };
@@ -119,6 +120,7 @@
 		42142794272F4ACD00F4BE6E /* EventsPagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerTabView.swift; sourceTree = "<group>"; };
 		42387FCC273007B300C458F2 /* EventPagerTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPagerTabController.swift; sourceTree = "<group>"; };
 		42387FD227300A6000C458F2 /* EventTypesUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesUIComposer.swift; sourceTree = "<group>"; };
+		4238D08127326DF400575E20 /* EventsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCache.swift; sourceTree = "<group>"; };
 		42466A1E272EE96100F00861 /* EventViewModelPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModelPresentable.swift; sourceTree = "<group>"; };
 		42466A24272EE9AF00F00861 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		42466A2A272EE9CA00F00861 /* EventLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLoadingView.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 			children = (
 				428D10BD272CB2170009A375 /* Event.swift */,
 				42F52901272E0CAA00F960A7 /* EventListingLoader.swift */,
+				4238D08127326DF400575E20 /* EventsCache.swift */,
 			);
 			path = "Event Listing Feature";
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 				427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */,
 				4268950F2731C38200520197 /* LocalEventDTO.swift in Sources */,
 				4214276D272F24B000F4BE6E /* EventTypesPresenter.swift in Sources */,
+				4238D08227326DF400575E20 /* EventsCache.swift in Sources */,
 				427627F1272BEA0300340B7F /* RemoteEventTypesLoader.swift in Sources */,
 				427627D3272B3EF400340B7F /* EventType.swift in Sources */,
 				42E33C26272DC7580003843B /* EventsListingPresenter.swift in Sources */,
