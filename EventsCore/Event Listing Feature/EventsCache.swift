@@ -10,5 +10,5 @@ import Foundation
 public protocol EventsCache {
     typealias Result = Swift.Result<Void, Error>
 
-    func save(_ events: [Event], completion: @escaping (Result) -> Void)
+    func save(_ events: [Event], for type: EventType, completion: @escaping (Result) -> Void)
 }

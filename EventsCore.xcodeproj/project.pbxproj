@@ -53,6 +53,7 @@
 		428D10E1272D26110009A375 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D10E0272D26110009A375 /* HTTPClientSpy.swift */; };
 		428D1105272D6A560009A375 /* EventsPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 428D10FC272D6A550009A375 /* EventsPlatform.framework */; };
 		428D110A272D6A560009A375 /* EventsListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */; };
+		42B446FE273442A6004E64F0 /* EventsLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B446FD273442A6004E64F0 /* EventsLocalLoader.swift */; };
 		42E33BBC272D7E790003843B /* EventsPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BBB272D7E790003843B /* EventsPager.swift */; };
 		42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BC2272D81780003843B /* EventsPagerConfig.swift */; };
 		42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -168,6 +169,7 @@
 		428D1104272D6A560009A375 /* EventsPlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsPlatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenterTests.swift; sourceTree = "<group>"; };
 		428D110B272D6A560009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42B446FD273442A6004E64F0 /* EventsLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLocalLoader.swift; sourceTree = "<group>"; };
 		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
 		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				4249B3AE2733214C001C0C0B /* EventTypesStore.swift */,
 				4249B3A4273320FD001C0C0B /* LocalEventTypeDTO.swift */,
 				4268950E2731C38200520197 /* LocalEventDTO.swift */,
+				42B446FD273442A6004E64F0 /* EventsLocalLoader.swift */,
 			);
 			path = "Event Listing Cache";
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				4249B3B927332386001C0C0B /* ManagedEventType.swift in Sources */,
 				42466A25272EE9AF00F00861 /* EventsView.swift in Sources */,
 				426895092731C30800520197 /* EventStore.swift in Sources */,
+				42B446FE273442A6004E64F0 /* EventsLocalLoader.swift in Sources */,
 				4268953A2731CDC800520197 /* ManagedEvent.swift in Sources */,
 				4268952C2731CAC900520197 /* EventStore.xcdatamodeld in Sources */,
 				427627FB272C335200340B7F /* EventTypeMapper.swift in Sources */,
