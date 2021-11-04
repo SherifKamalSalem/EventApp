@@ -36,6 +36,29 @@ public final class EventsLocalLoader: EventsCache {
     }
 }
 
+extension EventsLocalLoader: EventsListingLocalLoader {
+    public typealias LoadResult = EventsListingLoader.Result
+
+    public func load(for typeName: String, completion: @escaping (LoadResult) -> Void) {
+        store.retrieve(for: typeName) { [weak self] result in
+            guard self != nil else { return }
+            
+            switch result {
+            case let .failure(error):
+                completion(.failure(error))
+            case let .success(events):
+                completion(.success(events.toModels()))
+            }
+        }
+    }
+}
+
+private extension Array where Element == LocalEventDTO {
+    func toModels() -> [Event] {
+        return map { Event(id: $0.id, name: $0.name, longitude: $0.longitude, latitude: $0.latitude, startDate: $0.startDate, endDate: "", description: $0.eventDescription ?? "", cover: $0.cover) }
+    }
+}
+
 private extension Array where Element == Event {
     func toLocal() -> [LocalEventDTO] {
         return map { LocalEventDTO(id: $0.id, name: $0.name, longitude: $0.longitude, latitude: $0.latitude, startDate: $0.startDate, eventDescription: $0.description, cover: $0.cover) }
