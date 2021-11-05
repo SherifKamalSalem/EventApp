@@ -54,7 +54,9 @@
 		428D1105272D6A560009A375 /* EventsPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 428D10FC272D6A550009A375 /* EventsPlatform.framework */; };
 		428D110A272D6A560009A375 /* EventsListingPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */; };
 		42B446FE273442A6004E64F0 /* EventsLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B446FD273442A6004E64F0 /* EventsLocalLoader.swift */; };
-		42B4470427345546004E64F0 /* LocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B4470327345546004E64F0 /* LocalLoader.swift */; };
+		42B44718273469EB004E64F0 /* EventsLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B44717273469EB004E64F0 /* EventsLoaderWithFallbackComposite.swift */; };
+		42B4471E27346ED2004E64F0 /* EventsLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B4471D27346ED2004E64F0 /* EventsLoaderCacheDecorator.swift */; };
+		42B4472C273485F9004E64F0 /* EventsLocalLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B4472B273485F9004E64F0 /* EventsLocalLoaderAdapter.swift */; };
 		42E33BBC272D7E790003843B /* EventsPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BBB272D7E790003843B /* EventsPager.swift */; };
 		42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BC2272D81780003843B /* EventsPagerConfig.swift */; };
 		42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -171,7 +173,9 @@
 		428D1109272D6A560009A375 /* EventsListingPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenterTests.swift; sourceTree = "<group>"; };
 		428D110B272D6A560009A375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42B446FD273442A6004E64F0 /* EventsLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLocalLoader.swift; sourceTree = "<group>"; };
-		42B4470327345546004E64F0 /* LocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalLoader.swift; sourceTree = "<group>"; };
+		42B44717273469EB004E64F0 /* EventsLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
+		42B4471D27346ED2004E64F0 /* EventsLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLoaderCacheDecorator.swift; sourceTree = "<group>"; };
+		42B4472B273485F9004E64F0 /* EventsLocalLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLocalLoaderAdapter.swift; sourceTree = "<group>"; };
 		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
 		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
@@ -275,6 +279,9 @@
 			isa = PBXGroup;
 			children = (
 				42387FD227300A6000C458F2 /* EventTypesUIComposer.swift */,
+				42B44717273469EB004E64F0 /* EventsLoaderWithFallbackComposite.swift */,
+				42B4471D27346ED2004E64F0 /* EventsLoaderCacheDecorator.swift */,
+				42B4472B273485F9004E64F0 /* EventsLocalLoaderAdapter.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -324,7 +331,6 @@
 				4249B3A4273320FD001C0C0B /* LocalEventTypeDTO.swift */,
 				4268950E2731C38200520197 /* LocalEventDTO.swift */,
 				42B446FD273442A6004E64F0 /* EventsLocalLoader.swift */,
-				42B4470327345546004E64F0 /* LocalLoader.swift */,
 			);
 			path = "Event Listing Cache";
 			sourceTree = "<group>";
@@ -788,7 +794,6 @@
 			files = (
 				428D10BE272CB2170009A375 /* Event.swift in Sources */,
 				426895162731C7C400520197 /* CoreDataEventStore.swift in Sources */,
-				42B4470427345546004E64F0 /* LocalLoader.swift in Sources */,
 				4249B3B927332386001C0C0B /* ManagedEventType.swift in Sources */,
 				42466A25272EE9AF00F00861 /* EventsView.swift in Sources */,
 				426895092731C30800520197 /* EventStore.swift in Sources */,
@@ -837,6 +842,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B44718273469EB004E64F0 /* EventsLoaderWithFallbackComposite.swift in Sources */,
 				42E33BBC272D7E790003843B /* EventsPager.swift in Sources */,
 				42387FCD273007B300C458F2 /* EventPagerTabController.swift in Sources */,
 				42142795272F4ACD00F4BE6E /* EventsPagerTabView.swift in Sources */,
@@ -849,6 +855,8 @@
 				42E33C3F272DDD170003843B /* EventViewController.swift in Sources */,
 				42387FD327300A6000C458F2 /* EventTypesUIComposer.swift in Sources */,
 				42F528FC272E0B5100F960A7 /* EventsRefreshViewController.swift in Sources */,
+				42B4472C273485F9004E64F0 /* EventsLocalLoaderAdapter.swift in Sources */,
+				42B4471E27346ED2004E64F0 /* EventsLoaderCacheDecorator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

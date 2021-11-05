@@ -36,10 +36,9 @@ extension ManagedEvent {
     
     static func fetchEvents(with typeName: String, in context: NSManagedObjectContext) throws -> [ManagedEvent] {
         let request = NSFetchRequest<ManagedEvent>(entityName: entity().name!)
-        request.relationshipKeyPathsForPrefetching = ["cars"]
-
-        request.predicate = NSPredicate(format: "ANY ofType.name == c %@",
-                                     argumentArray: [typeName])
+        request.predicate = NSPredicate(
+            format: "ofType.name = %@",
+            argumentArray: [typeName.capitalized])
         request.returnsObjectsAsFaults = false
         return try context.fetch(request)
     }

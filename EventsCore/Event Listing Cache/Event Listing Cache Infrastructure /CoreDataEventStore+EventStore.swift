@@ -12,8 +12,14 @@ extension CoreDataEventStore: EventStore {
     public func insert(_ localEvents: [LocalEventDTO], for type: LocalEventTypeDTO, completion: @escaping InsertionCompletion) {
         perform { context in
             do {
-                let localEventType = try ManagedEventType.first(with: type.name, in: context)
-                localEventType?.events = ManagedEvent.events(from: localEvents, in: context)
+                if let localEventType = try ManagedEventType.first(with: type.name, in: context) {
+                    localEventType.events = ManagedEvent.events(from: localEvents, in: context)
+                } else {
+                    let localEventType = ManagedEventType(context: context)
+                    localEventType.name = type.name
+                    localEventType.id = type.id
+                    localEventType.events = ManagedEvent.events(from: localEvents, in: context)
+                }
                 try context.save()
                 completion(.success(()))
             } catch {

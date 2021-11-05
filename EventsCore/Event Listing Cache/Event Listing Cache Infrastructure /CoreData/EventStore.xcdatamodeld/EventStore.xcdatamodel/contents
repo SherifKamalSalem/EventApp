@@ -13,7 +13,7 @@
     <entity name="ManagedEventType" representedClassName="ManagedEventType" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedEvent" inverseName="ofType" inverseEntity="ManagedEvent"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ManagedEvent" inverseName="ofType" inverseEntity="ManagedEvent"/>
     </entity>
     <elements>
         <element name="ManagedEvent" positionX="-63" positionY="-18" width="128" height="163"/>
