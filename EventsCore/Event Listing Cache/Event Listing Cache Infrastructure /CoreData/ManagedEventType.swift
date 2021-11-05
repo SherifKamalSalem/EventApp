@@ -12,7 +12,7 @@ import CoreData
 class ManagedEventType: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var name: String
-    @NSManaged var events: NSOrderedSet
+    @NSManaged var events: NSSet
 }
 
 extension ManagedEventType {

@@ -1,8 +1,8 @@
 //
-//  EventsLoaderCacheDecorator.swift
-//  EventApp
+//  Decorator.swift
+//  EventsPlatform
 //
-//  Created by Sherif Kamal on 11/3/21.
+//  Created by Sherif Kamal on 11/4/21.
 //
 
 import Foundation

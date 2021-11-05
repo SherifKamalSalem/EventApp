@@ -12,7 +12,7 @@ public final class CoreDataEventStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
 
-    public init(storeURL: URL, bundle: Bundle = .main) throws {
+    public init(storeURL: URL, bundle: Bundle = Bundle(for: CoreDataEventStore.self)) throws {
         container = try NSPersistentContainer.load(modelName: "EventStore", url: storeURL, in: bundle)
         context = container.newBackgroundContext()
     }

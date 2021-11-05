@@ -36,7 +36,7 @@ public final class EventsLocalLoader: EventsCache {
     }
 }
 
-extension EventsLocalLoader: EventsListingLocalLoader {
+extension EventsLocalLoader {
     public typealias LoadResult = EventsListingLoader.Result
 
     public func load(for typeName: String, completion: @escaping (LoadResult) -> Void) {
