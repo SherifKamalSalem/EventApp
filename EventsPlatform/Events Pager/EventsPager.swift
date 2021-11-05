@@ -71,7 +71,9 @@ class EventsPager: NSObject {
             tabIndicator.backgroundColor = options.tabIndicatorViewBackgroundColor
             tabIndicator.heightAnchor.constraint(equalToConstant: options.tabIndicatorViewHeight).isActive = true
             tabIndicator.bottomAnchor.constraint(equalTo: tabBarScrollView.bottomAnchor).isActive = true
-            
+            guard tabsViewList.count > currentPageIndex else {
+                return
+            }
             let activeTab = self.tabsViewList[currentPageIndex]
             
             tabIndicatorLeadingConstraint = tabIndicator.leadingAnchor.constraint(equalTo: activeTab.leadingAnchor)
