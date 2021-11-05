@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H1419" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedEvent" representedClassName="ManagedEvent" syncable="YES">
+        <attribute name="cover" attributeType="String"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="latitude" attributeType="String"/>
+        <attribute name="longitude" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="startDate" attributeType="String"/>
+        <relationship name="ofType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedEventType" inverseName="events" inverseEntity="ManagedEventType"/>
+    </entity>
+    <entity name="ManagedEventType" representedClassName="ManagedEventType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ManagedEvent" inverseName="ofType" inverseEntity="ManagedEvent"/>
+    </entity>
+    <elements>
+        <element name="ManagedEvent" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="ManagedEventType" positionX="-54" positionY="45" width="128" height="88"/>
+    </elements>
+</model>

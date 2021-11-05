@@ -26,10 +26,12 @@ final class EventsRefreshViewController: NSObject, EventsLoadingView {
     }
     
     func display(_ viewModel: EventsLoadingViewModelPresentable) {
-        if viewModel.isLoading {
-            view.beginRefreshing()
-        } else {
-            view.endRefreshing()
+        DispatchQueue.main.async { [weak self] in
+            if viewModel.isLoading {
+                self?.view.beginRefreshing()
+            } else {
+                self?.view.endRefreshing()
+            }
         }
     }
 }

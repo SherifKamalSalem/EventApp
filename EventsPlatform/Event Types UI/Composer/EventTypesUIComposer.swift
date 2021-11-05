@@ -7,12 +7,13 @@
 
 import UIKit
 import EventsCore
+import CoreData
 
 public final class EventTypesUIComposer {
     public static func eventTypesComposedWith(eventTypesLoader: EventTypesLoader, completion: @escaping (UIViewController) -> Void) {
         let loadEventsAdapter = EventTypesLoaderPresentationAdapter(eventTypesLoader: eventTypesLoader)
         loadEventsAdapter.loadEventTypes() { eventTypes in
-            loadEventsAdapter.tabs = eventTypes.map { $0.name }
+            loadEventsAdapter.eventTypes = eventTypes
             let pagerTabController = EventPagerTabController(
                 model: EventTypesViewModelPresentable(eventTypes: eventTypes),
                 dataSource: loadEventsAdapter)
@@ -34,7 +35,10 @@ public final class EventTypesUIComposer {
 
 private final class EventTypesLoaderPresentationAdapter {
     private let eventTypesLoader: EventTypesLoader
-    fileprivate var tabs = [String]()
+    fileprivate var eventTypes = [EventType]()
+    private var tabs: [String] {
+        return eventTypes.map { $0.name }
+    }
     
     init(eventTypesLoader: EventTypesLoader) {
         self.eventTypesLoader = eventTypesLoader
@@ -56,9 +60,21 @@ extension EventTypesLoaderPresentationAdapter: EventsPagerDataSource {
     
     public func viewControllerAtPosition(position: Int) -> UIViewController {
         let tabName = tabs[position].lowercased()
+        let eventType = eventTypes[position]
         let client = URLSessionHTTPClient(session: .init(configuration: .ephemeral))
+        let store = try! CoreDataEventStore(
+            storeURL: NSPersistentContainer
+                .defaultDirectoryURL()
+                .appendingPathComponent("events-store.sqlite"))
+        let localEventsLoader = EventsLocalLoader(store: store)
+        let adapter = EventsLocalLoaderAdapter(loader: localEventsLoader, typeName: tabName)
         let eventsLoader = RemoteEventListingLoader(url: URL(string: "http://private-7466b-eventtuschanllengeapis.apiary-mock.com/events?event_type=\(tabName)&page=1")!, client: client)
-        return EventsUIComposer.eventsComposedWith(eventsLoader: eventsLoader)
+        return EventsUIComposer.eventsComposedWith(
+            eventsLoader: EventsLoaderWithFallbackComposite(
+                primary: EventsLoaderCacheDecorator(
+                    decoratee: eventsLoader, cache: localEventsLoader,
+                    eventType: eventType),
+                fallback: adapter))
     }
     
     public func tabsForPages() -> [String] {

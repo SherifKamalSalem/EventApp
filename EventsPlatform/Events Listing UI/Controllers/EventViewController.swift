@@ -11,7 +11,9 @@ public final class EventViewController: UITableViewController {
     var refreshController: EventsRefreshViewController?
     var tableModel = [EventCellController]() {
         didSet {
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
