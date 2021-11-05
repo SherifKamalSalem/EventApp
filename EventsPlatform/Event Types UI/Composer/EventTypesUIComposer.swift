@@ -10,8 +10,8 @@ import EventsCore
 import CoreData
 
 public final class EventTypesUIComposer {
-    public static func eventTypesComposedWith(eventTypesLoader: EventTypesLoader, completion: @escaping (UIViewController) -> Void) {
-        let loadEventsAdapter = EventTypesLoaderPresentationAdapter(eventTypesLoader: eventTypesLoader)
+    public static func eventTypesComposedWith(eventTypesLoader: EventTypesLoader, selection: @escaping (Event) -> Void, completion: @escaping (UIViewController) -> Void) {
+        let loadEventsAdapter = EventTypesLoaderPresentationAdapter(eventTypesLoader: eventTypesLoader, selection: selection)
         loadEventsAdapter.loadEventTypes() { eventTypes in
             loadEventsAdapter.eventTypes = eventTypes
             let pagerTabController = EventPagerTabController(
@@ -39,9 +39,11 @@ private final class EventTypesLoaderPresentationAdapter {
     private var tabs: [String] {
         return eventTypes.map { $0.name }
     }
-    
-    init(eventTypesLoader: EventTypesLoader) {
+    private let selection: (Event) -> Void
+        
+    init(eventTypesLoader: EventTypesLoader, selection: @escaping (Event) -> Void) {
         self.eventTypesLoader = eventTypesLoader
+        self.selection = selection
     }
     
     func loadEventTypes(completion: @escaping (_ tabs: [EventType]) -> Void) {
@@ -74,7 +76,7 @@ extension EventTypesLoaderPresentationAdapter: EventsPagerDataSource {
                 primary: EventsLoaderCacheDecorator(
                     decoratee: eventsLoader, cache: localEventsLoader,
                     eventType: eventType),
-                fallback: adapter))
+                fallback: adapter), selection: selection)
     }
     
     public func tabsForPages() -> [String] {

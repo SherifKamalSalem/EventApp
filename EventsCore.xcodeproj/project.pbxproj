@@ -63,6 +63,8 @@
 		42B4474C273532D5004E64F0 /* EventTypesLocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B4474B273532D5004E64F0 /* EventTypesLocalLoader.swift */; };
 		42B44752273534AA004E64F0 /* EventTypesLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B44751273534A9004E64F0 /* EventTypesLoaderWithFallbackComposite.swift */; };
 		42B44758273535EC004E64F0 /* EventTypesCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B44757273535EC004E64F0 /* EventTypesCacheDecorator.swift */; };
+		42B4477E2735762E004E64F0 /* EventDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42B4477D2735762E004E64F0 /* EventDetails.storyboard */; };
+		42B4478427357E45004E64F0 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B4478327357E45004E64F0 /* EventDetailsViewController.swift */; };
 		42E33BBC272D7E790003843B /* EventsPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BBB272D7E790003843B /* EventsPager.swift */; };
 		42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E33BC2272D81780003843B /* EventsPagerConfig.swift */; };
 		42E33BE0272D92A40003843B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42510598272C56B000CC97DC /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -188,6 +190,8 @@
 		42B4474B273532D5004E64F0 /* EventTypesLocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesLocalLoader.swift; sourceTree = "<group>"; };
 		42B44751273534A9004E64F0 /* EventTypesLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 		42B44757273535EC004E64F0 /* EventTypesCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypesCacheDecorator.swift; sourceTree = "<group>"; };
+		42B4477D2735762E004E64F0 /* EventDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventDetails.storyboard; sourceTree = "<group>"; };
+		42B4478327357E45004E64F0 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		42E33BBB272D7E790003843B /* EventsPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPager.swift; sourceTree = "<group>"; };
 		42E33BC2272D81780003843B /* EventsPagerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerConfig.swift; sourceTree = "<group>"; };
 		42E33C04272DA9E00003843B /* EventsListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListingPresenter.swift; sourceTree = "<group>"; };
@@ -505,6 +509,7 @@
 				428D10FF272D6A550009A375 /* Info.plist */,
 				42E33BD3272D8EF40003843B /* Events Pager */,
 				42142743272F19B700F4BE6E /* Event Types UI */,
+				42B4477C2735760D004E64F0 /* Event Details UI */,
 				42E33C0E272DB3B50003843B /* Events Listing UI */,
 			);
 			path = EventsPlatform;
@@ -518,6 +523,15 @@
 				428D110B272D6A560009A375 /* Info.plist */,
 			);
 			path = EventsPlatformTests;
+			sourceTree = "<group>";
+		};
+		42B4477C2735760D004E64F0 /* Event Details UI */ = {
+			isa = PBXGroup;
+			children = (
+				42B4477D2735762E004E64F0 /* EventDetails.storyboard */,
+				42B4478327357E45004E64F0 /* EventDetailsViewController.swift */,
+			);
+			path = "Event Details UI";
 			sourceTree = "<group>";
 		};
 		42E33BD3272D8EF40003843B /* Events Pager */ = {
@@ -782,6 +796,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B4477E2735762E004E64F0 /* EventDetails.storyboard in Resources */,
 				42E33C1B272DB49A0003843B /* EventsListing.storyboard in Resources */,
 				42142745272F1A0B00F4BE6E /* EventTypes.storyboard in Resources */,
 			);
@@ -870,6 +885,7 @@
 				42B44752273534AA004E64F0 /* EventTypesLoaderWithFallbackComposite.swift in Sources */,
 				42142795272F4ACD00F4BE6E /* EventsPagerTabView.swift in Sources */,
 				42E33BC3272D81780003843B /* EventsPagerConfig.swift in Sources */,
+				42B4478427357E45004E64F0 /* EventDetailsViewController.swift in Sources */,
 				42E33C21272DC1F20003843B /* EventCell.swift in Sources */,
 				42E33C31272DC8F30003843B /* EventCellController.swift in Sources */,
 				42F52909272E0E5D00F960A7 /* EventsUIComposer.swift in Sources */,

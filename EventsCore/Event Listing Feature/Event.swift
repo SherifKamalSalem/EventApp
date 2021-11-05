@@ -8,11 +8,11 @@
 import Foundation
 
 public struct Event: Equatable, Hashable {
-    let id: String
-    let name: String
-    let longitude, latitude, endDate, startDate: String
-    let description: String
-    let cover: String
+    public let id: String
+    public let name: String
+    public let longitude, latitude, endDate, startDate: String
+    public let description: String
+    public let cover: String
     
     public init(id: String, name: String,
                 longitude: String,latitude: String,

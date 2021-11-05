@@ -27,6 +27,10 @@ public final class EventViewController: UITableViewController {
         return tableModel.count
     }
     
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellController(forRowAt: indexPath).tableView(tableView, didSelectRowAt: indexPath)
+    }
+    
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let controller = cellController(forRowAt: indexPath)
         return controller.tableView(tableView, cellForRowAt: indexPath)

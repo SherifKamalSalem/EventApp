@@ -11,9 +11,11 @@ import EventsCore
 final class EventCellController: NSObject {
     private let viewModel: EventViewModelPresentable
     private var cell: EventCell?
+    private let selection: () -> Void
 
-    public init(viewModel: EventViewModelPresentable) {
+    public init(viewModel: EventViewModelPresentable, selection: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.selection = selection
     }
 }
 
@@ -25,5 +27,9 @@ extension EventCellController {
         cell?.descriptionLabel.text = viewModel.description
         cell?.nameLabel.text = viewModel.name
         return cell ?? UITableViewCell()
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection()
     }
 }

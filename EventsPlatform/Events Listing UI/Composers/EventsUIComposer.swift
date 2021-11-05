@@ -9,11 +9,14 @@ import UIKit
 import EventsCore
 
 public final class EventsUIComposer {
-    public static func eventsComposedWith(eventsLoader: EventsListingLoader) -> EventViewController {
+    public static func eventsComposedWith(
+        eventsLoader: EventsListingLoader,
+        selection: @escaping (Event) -> Void = { _ in }
+    ) -> EventViewController {
         let loadEventsAdapter = EventsLoaderPresentationAdapter(eventsLoader: eventsLoader)
         let refreshController = EventsRefreshViewController(loadEvents: loadEventsAdapter.loadEvents)
         let controller = makeEventsViewController(refreshController: refreshController)
-        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: controller))
+        let presenter = EventsListingPresenter(loadingView: WeakRefVirtualProxy(refreshController), eventsView: EventsViewAdapter(controller: controller, selection: selection))
         loadEventsAdapter.presenter = presenter
         return controller
     }
@@ -44,14 +47,18 @@ extension WeakRefVirtualProxy: EventsLoadingView where T: EventsLoadingView {
 
 private final class EventsViewAdapter: EventsView {
     private weak var controller: EventViewController?
-    
-    init(controller: EventViewController) {
+    private let selection: (Event) -> Void
+
+    init(controller: EventViewController, selection: @escaping (Event) -> Void) {
         self.controller = controller
+        self.selection = selection
     }
     
     func display(_ viewModel: EventsViewModelPresentable) {
         controller?.tableModel = viewModel.events.map { model in
-            EventCellController(viewModel: EventViewModelPresentable(event: model))
+            EventCellController(viewModel: EventViewModelPresentable(event: model), selection: { [weak self] in
+                self?.selection(model)
+            })
         }
     }
 }
