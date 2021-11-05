@@ -70,6 +70,7 @@ extension EventTypesLoaderPresentationAdapter: EventsPagerDataSource {
                 .appendingPathComponent("events-store.sqlite"))
         let localEventsLoader = EventsLocalLoader(store: store)
         let adapter = EventsLocalLoaderAdapter(loader: localEventsLoader, typeName: tabName)
+        
         let eventsLoader = RemoteEventListingLoader(url: URL(string: "http://private-7466b-eventtuschanllengeapis.apiary-mock.com/events?event_type=\(tabName)&page=1")!, client: client)
         return EventsUIComposer.eventsComposedWith(
             eventsLoader: EventsLoaderWithFallbackComposite(
