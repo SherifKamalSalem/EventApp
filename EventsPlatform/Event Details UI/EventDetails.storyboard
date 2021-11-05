@@ -139,6 +139,7 @@
                     <connections>
                         <outlet property="backBtn" destination="Eys-lp-l1Q" id="bLG-ns-Aws"/>
                         <outlet property="eventDescriptionLabel" destination="aRv-Ud-MLW" id="W2s-hf-QUu"/>
+                        <outlet property="eventImage" destination="w6A-3I-ItZ" id="OPj-RD-eZm"/>
                         <outlet property="eventNameLabel" destination="AyF-il-kcO" id="UQW-fP-xq4"/>
                         <outlet property="eventStartDateLabel" destination="ywP-uG-Nhv" id="vzd-ZD-mC6"/>
                         <outlet property="mapView" destination="0TO-Fj-2Ee" id="FSE-Ef-2Fk"/>

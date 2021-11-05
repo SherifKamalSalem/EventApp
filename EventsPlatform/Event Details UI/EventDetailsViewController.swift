@@ -16,7 +16,8 @@ public final class EventDetailsViewController: UIViewController {
     @IBOutlet weak private(set) var eventDescriptionLabel: UILabel!
     @IBOutlet weak private(set) var mapView: MKMapView!
     @IBOutlet weak private(set) var eventStartDateLabel: UILabel!
-    
+    @IBOutlet weak private(set) var eventImage: UIImageView!
+
     //Here I assigned the event directly just for simplicity even if it's considered a violates of MVP design pattern (the best practice it to declare view protocol like eventsview and create presenter ... the same as event listing feature)
     public var event: Event?
     
@@ -31,6 +32,10 @@ public final class EventDetailsViewController: UIViewController {
         eventNameLabel.text = event?.name
         eventDescriptionLabel.text = event?.description
         eventStartDateLabel.text = event?.startDate
+        // This is incorrect and violation of MVP design pattern but it considered a tradoffs 
+        if let url = event?.cover {
+            eventImage.downloaded(from: url)
+        }
     }
     
     private func setupMapCameraPosition() {

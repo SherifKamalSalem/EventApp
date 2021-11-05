@@ -12,13 +12,11 @@ final class EventCellController: NSObject {
     private let viewModel: EventViewModelPresentable
     private var cell: EventCell?
     private let selection: () -> Void
-    private let loadedImage: () -> Data
 
-//    public init(viewModel: EventViewModelPresentable, loadedImage: @escaping () -> Data, selection: @escaping () -> Void) {
-//        self.viewModel = viewModel
-//        self.selection = selection
-//        self.loadedImage = loadedImage
-//    }
+    public init(viewModel: EventViewModelPresentable, selection: @escaping () -> Void) {
+        self.viewModel = viewModel
+        self.selection = selection
+    }
 }
 
 extension EventCellController {
@@ -28,7 +26,7 @@ extension EventCellController {
         cell?.dateLabel.text = viewModel.startDate
         cell?.descriptionLabel.text = viewModel.description
         cell?.nameLabel.text = viewModel.name
-        cell?.eventImage.image = UIImage(data: loadedImage())
+        cell?.eventImage.downloaded(from: viewModel.cover)
         return cell ?? UITableViewCell()
     }
     
